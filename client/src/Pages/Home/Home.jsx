@@ -2,34 +2,19 @@ import { useEffect, useState } from "react";
 import "./home.styles.scss";
 import MovieList from "../../components/MovieList/MovieList";
 import Spinner from "../../components/Spinner/Spinner";
-const apiKey = import.meta.env.VITE_API_KEY;
+import { useQueryClient } from "@tanstack/react-query";
+export const apiKey = import.meta.env.VITE_API_KEY;
+import useMovies from "../../hooks/useMovies";
 
 // app
 const Home = () => {
+  const queryClient = useQueryClient();
   const [pageNumber, setPageNumber] = useState(1);
-  const [movies, setMovies] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const getMovies = async () => {
-      const moviesUrl = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${pageNumber}`;
-      try {
-        setIsLoading(true);
-        const res = await fetch(moviesUrl);
-        if (!res.ok) {
-          throw new Error("something went wrong");
-        }
-        const data = await res.json();
-        setMovies(data.results);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getMovies();
-  }, [pageNumber]);
+  const { data: movies, isLoading } = useMovies(pageNumber);
 
   const handleLoadMore = async () => {
     setPageNumber((prev) => prev + 1);
+    queryClient.invalidateQueries([{ queryKey: "movies" }]);
   };
 
   if (isLoading) {

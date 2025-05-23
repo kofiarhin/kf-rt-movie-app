@@ -1,58 +1,99 @@
-.app-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #121212;
   padding: 1rem 2rem;
-  border-bottom: 1px solid #222;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  background-color: #000000;
+  color: #ffffff;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    min-width: 0; // allow flex children to shrink
+
+    .logo {
+      font-size: 1.5rem;
+      color: #00b894;
+      font-weight: bold;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .search-form {
+      display: flex;
+      flex-grow: 1;
+      max-width: 800px;
+
+      input {
+        flex: 1;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 4px 0 0 4px;
+        background: #1c1c1c;
+        color: #ffffff;
+
+        &::placeholder {
+          color: #999999;
+        }
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        background-color: #00b894;
+        color: white;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #009d7f;
+        }
+      }
+    }
+  }
+
+  .header-right {
+    display: flex;
+    gap: 1rem;
+
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        color: #00b894;
+      }
+    }
+  }
 }
 
-.logo {
-  font-size: 1.5rem;
-  color: #e50914;
-  font-weight: bold;
-  white-space: nowrap;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  color: #f2f2f2;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.2s ease-in-out;
-}
-
-.nav-links a:hover {
-  color: #e50914;
-}
-
-/* Responsive adjustments */
+// Responsive layout
 @media (max-width: 768px) {
-  .app-header {
+  .header {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
+    align-items: stretch;
+    gap: 1rem;
   }
 
-  .logo {
-    margin-bottom: 0.75rem;
-    font-size: 1.25rem;
-  }
-
-  .nav-links {
+  .header-left,
+  .header-right {
     width: 100%;
+    justify-content: center;
     flex-direction: column;
-    gap: 0.75rem;
+    align-items: center;
   }
 
-  .nav-links a {
-    font-size: 1rem;
+  .search-form {
+    width: 100%;
+    max-width: none;
+
+    input {
+      width: 100%;
+    }
   }
 }
