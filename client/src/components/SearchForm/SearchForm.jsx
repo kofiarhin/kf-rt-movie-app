@@ -14,9 +14,9 @@ const SearchForm = () => {
   // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    queryClient.invalidateQueries({
-      queryKey: ["search", query, pageNumber],
-    });
+    // queryClient.invalidateQueries({
+    //   queryKey: ["search", query, pageNumber],
+    // });
     dispatch(reset());
     navigate(`/search/${query}/1`);
   };
