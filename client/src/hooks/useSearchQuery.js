@@ -14,7 +14,7 @@ const searchMovies = async (query, pageNumber) => {
 // use search
 const useSearch = (query, pageNumber = 1) => {
   return useQuery({
-    queryKey: ["search", pageNumber],
+    queryKey: ["search", pageNumber, pageNumber],
     queryFn: () => searchMovies(query, pageNumber),
     enabled: !!query && !!pageNumber,
   });

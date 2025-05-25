@@ -3,13 +3,20 @@ import useSearch from "../../hooks/useSearchQuery";
 import { useState } from "react";
 import MovieList from "../../components/MovieList/MovieList";
 import Spinner from "../../components/Spinner/Spinner";
+import { useSelector, useDispatch } from "react-redux";
+import { increasePageNumber } from "../../redux/Pages/pageSlice";
 
 // searh page
 const SearchPage = () => {
   const params = useParams();
-  const { query, pageNumber: searchPageNumber } = useParams();
-  const [pageNumber, setPageNumber] = useState(searchPageNumber);
-  const { data: searchData, error, isLoading } = useSearch(query, pageNumber);
+  const dispatch = useDispatch();
+  const { query } = useParams();
+  const { pageNumber: globalPageNumber } = useSelector((state) => state.page);
+  const {
+    data: searchData,
+    error,
+    isLoading,
+  } = useSearch(query, globalPageNumber);
 
   if (isLoading) return <Spinner />;
 
@@ -19,7 +26,7 @@ const SearchPage = () => {
       {searchData && <MovieList data={searchData} />}
       <button
         classNeme="btn btn-default"
-        onClick={() => setPageNumber((prev) => prev + 1)}
+        onClick={() => dispatch(increasePageNumber())}
       >
         Load More
       </button>
