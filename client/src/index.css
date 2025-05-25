@@ -80,6 +80,12 @@ textarea {
   box-sizing: border-box;
 }
 
+/* general styling */
+.btn-default {
+  width: 100%;
+  background-color: orange;
+}
+
 /* Responsive font scaling */
 @media (max-width: 768px) {
   body {

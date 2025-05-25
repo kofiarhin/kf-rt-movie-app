@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiKey } from "../config/lib";
 
-const getMovies = async (pageNumber) => {
+const getMovies = async (pageNumber = 1) => {
   const moviesUrl = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${pageNumber}`;
   const res = await fetch(moviesUrl);
 
@@ -12,7 +12,7 @@ const getMovies = async (pageNumber) => {
   return data.results;
   return { message: "get movies" };
 };
-const useMovies = (pageNumber) => {
+const useMovies = (pageNumber = 1) => {
   return useQuery({
     queryKey: ["movies"],
     queryFn: () => getMovies(pageNumber),

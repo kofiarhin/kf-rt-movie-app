@@ -1,30 +1,38 @@
-import { useEffect, useState } from "react";
-import "./home.styles.scss";
-import MovieList from "../../components/MovieList/MovieList";
-import Spinner from "../../components/Spinner/Spinner";
-import { useQueryClient } from "@tanstack/react-query";
-export const apiKey = import.meta.env.VITE_API_KEY;
 import useMovies from "../../hooks/useMovies";
+import { useEffect } from "react";
+import { useState } from "react";
+import MovieList from "../../components/MovieList/MovieList";
+import { setMoviesData } from "../../redux/Movies/MoviesSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-// app
 const Home = () => {
-  const queryClient = useQueryClient();
+  const dispatch = useDispatch();
+  const { searchData } = useSelector((state) => state.search);
   const [pageNumber, setPageNumber] = useState(1);
-  const { data: movies, isLoading } = useMovies(pageNumber);
+  const { data: moviesData, isLoading: isMoviesLoading } =
+    useMovies(pageNumber);
+
+  useEffect(() => {
+    console.log(searchData);
+  }, [pageNumber]);
 
   const handleLoadMore = async () => {
     setPageNumber((prev) => prev + 1);
-    queryClient.invalidateQueries([{ queryKey: "movies" }]);
+    console.log(pageNumber);
   };
 
-  if (isLoading) {
-    return <Spinner />;
+  if (isMoviesLoading) {
+    return <h1>Loading.....</h1>;
   }
-
   return (
-    <div className="app">
-      <h1>Movies App</h1>
-      {movies && movies?.length > 0 && <MovieList data={movies} />}
+    <div classNeme="home">
+      <h1 className="heading center">Home</h1>
+      {/* {moviesData && <MovieList data={moviesData} />} */}
+      {searchData && searchData.length > 0 ? (
+        <MovieList data={searchData} />
+      ) : (
+        <MovieList data={moviesData} />
+      )}
       <button onClick={handleLoadMore}>Load More</button>
     </div>
   );

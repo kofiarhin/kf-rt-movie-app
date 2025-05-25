@@ -1,32 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.styles.scss";
+import useSearchQuery from "../../hooks/useSearchQuery";
+import SearchForm from "../SearchForm/SearchForm";
 
-const Header = ({ onSearch }) => {
-  const [query, setQuery] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (query.trim()) {
-      onSearch(query);
-    }
-  };
-
+const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
         <Link to="/" className="logo">
           🎬 KofiFlix
         </Link>
-        <form className="search-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Search movies..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </form>
+        <SearchForm />
       </div>
       <div className="header-right">
         <Link to="/login" className="nav-link">
