@@ -17,7 +17,7 @@ A real-time movie browsing and discovery web app built with React. Users can exp
 
 ## 🌐 Live Demo
 
-👉 [Check it out here](https://kf-rt-movie-j63fjwgx4-kofi-arhins-projects.vercel.app/)
+👉 <a href="https://kf-rt-movie-j63fjwgx4-kofi-arhins-projects.vercel.app/" target="_blank">Check it out here</a>
 
 ---
 
