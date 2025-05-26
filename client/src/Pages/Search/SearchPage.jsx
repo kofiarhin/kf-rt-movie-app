@@ -1,35 +1,29 @@
-import { useParams } from "react-router-dom";
-import useSearch from "../../hooks/useSearchQuery";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import useSearchQuery from "../../hooks/useSearchQuery";
+import { increasePageNumber } from "../../redux/Pages/pageSlice";
+import { useDispatch } from "react-redux";
 import MovieList from "../../components/MovieList/MovieList";
 import Spinner from "../../components/Spinner/Spinner";
-import { useSelector, useDispatch } from "react-redux";
-import { increasePageNumber } from "../../redux/Pages/pageSlice";
 
-// searh page
+// search page
 const SearchPage = () => {
-  const params = useParams();
   const dispatch = useDispatch();
-  const { query } = useParams();
-  const { pageNumber: globalPageNumber } = useSelector((state) => state.page);
-  const {
-    data: searchData,
-    error,
-    isLoading,
-  } = useSearch(query, globalPageNumber);
+  const { pageNumber } = useSelector((state) => state.page);
+  const { search } = useSelector((state) => state.search);
+
+  const { data, isLoading } = useSearchQuery(search, pageNumber);
+  console.log(pageNumber, search, data);
 
   if (isLoading) return <Spinner />;
-
   return (
     <div>
-      <h1 className="heading"> You are searching {query} </h1>
-      {searchData && <MovieList data={searchData} />}
-      <button
-        classNeme="btn btn-default"
-        onClick={() => dispatch(increasePageNumber())}
-      >
-        Load More
-      </button>
+      <h1 className="heading center">
+        {" "}
+        Searching ''{search} {pageNumber} ''{" "}
+      </h1>
+      <MovieList data={data} />
+
+      <button>Load More</button>
     </div>
   );
 };

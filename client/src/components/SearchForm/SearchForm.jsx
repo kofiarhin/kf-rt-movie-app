@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { useDispatch, useSelector, useSlector } from "react-redux";
-import { reset } from "../../redux/Pages/pageSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { reset as pageReset } from "../../redux/Pages/pageSlice";
+import { setSearch } from "../../redux/search/searchSlice";
+// search form
 const SearchForm = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -13,12 +15,15 @@ const SearchForm = () => {
   const [query, setQuery] = useState("terminator");
   // handle submit
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    // queryClient.invalidateQueries({
-    //   queryKey: ["search", query, pageNumber],
-    // });
-    dispatch(reset());
-    navigate(`/search/${query}/1`);
+    // e.preventDefault();
+    dispatch(setSearch(query));
+    dispatch(pageReset());
+    queryClient.invalidateQueries({
+      queryKey: ["search", query, pageNumber],
+    });
+    navigate("/search");
+    // dispatch(reset());
+    // navigate(`/search/${query}/1`);
   };
   return (
     <form className="search-form" onSubmit={handleSubmit}>

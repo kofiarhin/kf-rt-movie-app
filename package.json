@@ -13,10 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "mongoose": "^8.15.0"
+    "mongoose": "^8.15.0",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
