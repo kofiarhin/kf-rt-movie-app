@@ -14,7 +14,7 @@ const getMovies = async (pageNumber = 1) => {
 };
 const useMovies = (pageNumber = 1) => {
   return useQuery({
-    queryKey: ["movies"],
+    queryKey: ["movies", pageNumber],
     queryFn: () => getMovies(pageNumber),
     enabled: !!pageNumber,
   });

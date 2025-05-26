@@ -5,19 +5,17 @@ const searchMovies = async (query, pageNumber) => {
 
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error("something weint wrong");
+    throw new Error("something went wrong");
   }
   const data = await res.json();
   return data.results;
 };
-
-// use search
-const useSearch = (query, pageNumber = 1) => {
+// useSearchQuery
+const useSearchQury = (query, pageNumber = 1) => {
   return useQuery({
-    queryKey: ["search", pageNumber, pageNumber],
+    queryKey: ["search", query, pageNumber],
     queryFn: () => searchMovies(query, pageNumber),
-    enabled: !!query && !!pageNumber,
   });
 };
 
-export default useSearch;
+export default useSearchQury;

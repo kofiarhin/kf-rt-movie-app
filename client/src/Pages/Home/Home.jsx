@@ -1,38 +1,24 @@
-import useMovies from "../../hooks/useMovies";
-import { useEffect } from "react";
 import { useState } from "react";
+import useMovies from "../../hooks/useMovies";
+import Spinner from "../../components/Spinner/Spinner";
 import MovieList from "../../components/MovieList/MovieList";
-import { setMoviesData } from "../../redux/Movies/MoviesSlice";
-import { useDispatch, useSelector } from "react-redux";
-
+// home
 const Home = () => {
-  const dispatch = useDispatch();
-  const { searchData } = useSelector((state) => state.search);
   const [pageNumber, setPageNumber] = useState(1);
-  const { data: moviesData, isLoading: isMoviesLoading } =
-    useMovies(pageNumber);
+  const { data, isLoading, error } = useMovies(pageNumber);
 
-  useEffect(() => {
-    console.log(searchData);
-  }, [pageNumber]);
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  const handleLoadMore = async () => {
+  const handleLoadMore = () => {
     setPageNumber((prev) => prev + 1);
-    console.log(pageNumber);
   };
 
-  if (isMoviesLoading) {
-    return <h1>Loading.....</h1>;
-  }
   return (
-    <div classNeme="home">
-      <h1 className="heading center">Home</h1>
-      {/* {moviesData && <MovieList data={moviesData} />} */}
-      {searchData && searchData.length > 0 ? (
-        <MovieList data={searchData} />
-      ) : (
-        <MovieList data={moviesData} />
-      )}
+    <div className="home">
+      {data && <MovieList data={data} />}
+
       <button onClick={handleLoadMore}>Load More</button>
     </div>
   );

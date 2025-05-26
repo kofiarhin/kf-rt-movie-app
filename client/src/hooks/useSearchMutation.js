@@ -23,8 +23,9 @@ const useSearchMutation = () => {
     mutationKey: ["search"],
     onSuccess: (data) => {
       dispatch(setSearchData(data));
+      queryClient.invalidateQueries(["search"]);
       // Update the 'movies' query cache with the search result
-      queryClient.setQueryData(["movies"], data);
+      // queryClient.setQueryData(["movies"], data);
 
       // Optional: Invalidate to refetch if there are dependent queries
       //   queryClient.invalidateQueries({ queryKey: ["movies"] });

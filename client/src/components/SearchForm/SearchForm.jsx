@@ -12,16 +12,16 @@ const SearchForm = () => {
 
   const { pageNumber } = useSelector((state) => state.page);
 
-  const [query, setQuery] = useState("terminator");
+  const [query, setQuery] = useState("");
   // handle submit
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
+
+    if (!query) return;
     dispatch(setSearch(query));
     dispatch(pageReset());
-    queryClient.invalidateQueries({
-      queryKey: ["search", query, pageNumber],
-    });
-    navigate("/search");
+    navigate(`/search?query=${query}`);
+    setQuery("");
     // dispatch(reset());
     // navigate(`/search/${query}/1`);
   };

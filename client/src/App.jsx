@@ -9,9 +9,9 @@ import SearchPage from "./Pages/Search/SearchPage";
 // app
 const App = () => {
   return (
-    <>
-      <Router>
-        <Header />
+    <Router>
+      <Header />
+      <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -19,8 +19,8 @@ const App = () => {
           <Route path="/movies/:id" element={<Movie />} />
           <Route path="/search" element={<SearchPage />} />
         </Routes>
-      </Router>
-    </>
+      </div>
+    </Router>
   );
 };
 
