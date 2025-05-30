@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { apiKey } from "../config/lib";
 
 const getMovies = async (pageNumber = 1) => {
+  const trendingUrl = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
   const moviesUrl = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${pageNumber}`;
   const res = await fetch(moviesUrl);
 

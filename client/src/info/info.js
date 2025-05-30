@@ -7,6 +7,8 @@
   const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=ca357c71903c409f2ce08d61e75700a6&language=en-US`;
   const moviesUrl = `https://api.themoviedb.org/3/tv/popular?api_key=ca357c71903c409f2ce08d61e75700a6&language=en-US&page=${pageNumber}`;
 
+  // trending movies
+  const trendingUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=ca357c71903c409f2ce08d61e75700a6`;
   //   get movies
   const getMovies = async () => {
     const res = await fetch(movieUrl);

@@ -7,7 +7,12 @@ import Image from "../../components/Image/Image";
 const Movie = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useMovie(id);
-  console.log("xxx", data);
+  if (error)
+    return (
+      <div>
+        <h1 className="heading error"> Movei not found</h1>
+      </div>
+    );
   if (isLoading) return <Spinner />;
   return (
     <div className="movie">
