@@ -14,7 +14,7 @@ const MovieList = ({ data }) => {
           <div key={movie.id} className="movie-item">
             <Image url={movie.poster_path} />
             <h3>{movie.original_title}</h3>
-            <p> {movie.overview} </p>
+            <p> {movie.overview.substring(0, 200)}... </p>
             <p> Rating: {movie.vote_average} </p>
             <Link to={`/movies/${movie.id}`}> View More</Link>
           </div>
