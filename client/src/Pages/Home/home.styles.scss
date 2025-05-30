@@ -1,9 +1,12 @@
-.home {
-  padding-bottom: 1rem;
+#home {
+  padding: 2rem 0rem;
   button {
     display: block;
     width: 100%;
     padding: 0.5rem 0rem;
-    cursor: pointer;
+    color: white;
+    border: none;
+    outline: none;
+    margin-top: 1rem;
   }
 }

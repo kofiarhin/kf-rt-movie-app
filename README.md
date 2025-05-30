@@ -6,27 +6,27 @@ A real-time movie browsing and discovery web app built with React. Users can exp
 
 ## 🚀 Features
 
-- 🔥 View trending movies in real-time  
-- 🎭 Filter by genre  
-- 🔍 Search for specific movies  
-- 📄 See detailed movie info (title, rating, description, release date)  
-- ⚡ Smooth and responsive UI  
-- 🔧 Easy to extend and customize  
+- 🔥 View trending movies in real-time
+- 🎭 Filter by genre
+- 🔍 Search for specific movies
+- 📄 See detailed movie info (title, rating, description, release date)
+- ⚡ Smooth and responsive UI
+- 🔧 Easy to extend and customize
 
 ---
 
 ## 🌐 Live Demo
 
-👉 <a href="https://kf-rt-movie-j63fjwgx4-kofi-arhins-projects.vercel.app/" target="_blank">Check it out here</a>
+👉 <a href="https://kf-rt-movie-app.vercel.app/" target="_blank">Check it out here</a>
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Frontend:** React, TailwindCSS  
-- **Routing:** React Router  
-- **API:** TMDb API (or similar)  
-- **State Management:** useState, useEffect (local state)  
+- **Frontend:** React, TailwindCSS
+- **Routing:** React Router
+- **API:** TMDb API (or similar)
+- **State Management:** useState, useEffect (local state)
 
 ---
 
@@ -39,6 +39,8 @@ _Add screenshots or a GIF demo here if available._
 ## ⚙️ Getting Started
 
 ### 1. Clone the repo
+
 ```bash
 git clone https://github.com/kofiarhin/kf-rt-movie-app.git
 cd kf-rt-movie-app
+```

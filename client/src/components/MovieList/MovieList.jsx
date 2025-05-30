@@ -12,8 +12,8 @@ const MovieList = ({ data }) => {
       {data.map((movie) => {
         return (
           <div key={movie.id} className="movie-item">
-            <h3>{movie.original_name}</h3>
             <Image url={movie.poster_path} />
+            <h3>{movie.original_title}</h3>
             <p> {movie.overview} </p>
             <p> Rating: {movie.vote_average} </p>
             <Link to={`/movies/${movie.id}`}> View More</Link>

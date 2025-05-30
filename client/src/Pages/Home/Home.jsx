@@ -2,6 +2,8 @@ import { useState } from "react";
 import useMovies from "../../hooks/useMovies";
 import Spinner from "../../components/Spinner/Spinner";
 import MovieList from "../../components/MovieList/MovieList";
+import "./home.styles.scss";
+
 // home
 const Home = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -16,9 +18,8 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
+    <div id="home">
       {data && <MovieList data={data} />}
-
       <button onClick={handleLoadMore}>Load More</button>
     </div>
   );

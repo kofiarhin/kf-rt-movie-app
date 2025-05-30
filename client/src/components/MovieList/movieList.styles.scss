@@ -1,3 +1,21 @@
-img {
-  width: 300px;
+.movie-list {
+  img {
+    width: 300px;
+  }
+  .movie-item {
+    margin-bottom: 2rem;
+    p {
+      margin-bottom: 1rem;
+    }
+    a {
+      background-color: red;
+      color: white;
+      padding: 0.5rem 1rem;
+      transition: all ease-in-out 300ms;
+      &:hover {
+        background-color: white;
+        color: red;
+      }
+    }
+  }
 }
