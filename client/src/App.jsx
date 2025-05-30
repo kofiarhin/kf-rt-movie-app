@@ -5,6 +5,7 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Movie from "./Pages/Movie/Movie";
 import SearchPage from "./Pages/Search/SearchPage";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 // app
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/movies/:id" element={<Movie />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

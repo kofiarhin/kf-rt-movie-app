@@ -1,15 +1,16 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const userRoutes = require("./routes/userRoutes");
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
-// setup middleware
-app.use(cors());
+const app = express();
+
+//setup middleware
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors());
 
-// setup routes
-app.use("/api/users", userRoutes);
+app.get("/api/auth/register", (req, res) => {
+  return res.json({ message: "register user" });
+});
 
-module.exports = app;
+export default app;

@@ -9,7 +9,7 @@ const Header = () => {
     <header className="header">
       <div className="header-left">
         <Link to="/" className="logo">
-          🎬 KofiFlix
+          KofiFlix
         </Link>
         <SearchForm />
       </div>
