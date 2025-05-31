@@ -107,3 +107,20 @@ describe("auth", () => {
     expect(body).toEqual({ error: "check credentials and try again" });
   });
 });
+
+// check auth
+it("should check auth", async () => {
+  // login user
+  const user = users[0];
+
+  const { body, statusCode, headers } = await request(app)
+    .post("/api/auth/login")
+    .send(user);
+  const token = headers["set-cookie"][0].split("=")[1];
+
+  const { body: authBody, statusCode: authStatus } = await request(app)
+    .get("/api/check")
+    .set("Cookie", `token=${token}`);
+
+  expect(statusCode).toBe(200);
+});
