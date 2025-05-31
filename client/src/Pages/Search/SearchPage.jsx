@@ -17,12 +17,14 @@ const SearchPage = () => {
 
   const handlePageNumber = () => {
     setPageNubmer((prev) => prev + 1);
-    console.log(pageNumber);
   };
 
   return (
     <div className="search">
-      <h1 className="heading"> You are Searching `{query}` </h1>
+      <h1 className="heading">
+        {" "}
+        You are searching <span>{query}</span>{" "}
+      </h1>
       {data && <MovieList data={data} />}
       <button onClick={handlePageNumber}>Load More</button>
     </div>

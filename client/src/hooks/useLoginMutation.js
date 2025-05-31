@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { setUser } from "../redux/auth/authSlice";
 
 const loginUser = async (userData) => {
   const res = await fetch("/api/auth/login", {
@@ -28,6 +29,8 @@ const useLoginmutation = () => {
     mutationKey: "login",
     mutationFn: (userData) => loginUser(userData),
     onSuccess: (data) => {
+      localStorage.setItem("user", JSON.stringify(data));
+      dispatch(setUser(data));
       navigate("/dashboard");
     },
     onError: (data) => {

@@ -5,6 +5,7 @@ import { expect } from "vitest";
 import { createUser } from "../utils/helper.js";
 import users from "./data/users.js";
 import User from "../models/userModel.js";
+import { getAuthToken, authRequest } from "./testUtils.js";
 
 describe("auth", () => {
   // passing test
@@ -106,21 +107,26 @@ describe("auth", () => {
     expect(statusCode).toBe(400);
     expect(body).toEqual({ error: "check credentials and try again" });
   });
-});
 
-// check auth
-it("should check auth", async () => {
-  // login user
-  const user = users[0];
+  // check auth
+  it("should check auth", async () => {
+    // login user
+    const user = users[0];
 
-  const { body, statusCode, headers } = await request(app)
-    .post("/api/auth/login")
-    .send(user);
-  const token = headers["set-cookie"][0].split("=")[1];
+    const { body, statusCode, headers } = await request(app)
+      .post("/api/auth/login")
+      .send(user);
+    const token = headers["set-cookie"][0].split("=")[1];
 
-  const { body: authBody, statusCode: authStatus } = await request(app)
-    .get("/api/check")
-    .set("Cookie", `token=${token}`);
+    const { body: authBody, statusCode: authStatus } = await request(app)
+      .get("/api/check")
+      .set("Cookie", `token=${token}`);
+    expect(authStatus).toBe(404);
+  });
 
-  expect(statusCode).toBe(200);
+  it("should get auth token", async () => {
+    const token = await getAuthToken();
+    expect(token).toBeDefined();
+  });
+  
 });

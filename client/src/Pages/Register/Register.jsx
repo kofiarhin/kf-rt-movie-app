@@ -1,13 +1,16 @@
 import { useState } from "react";
+import useRegisterMutation from "../../hooks/useRegisterMutation";
 
+// register page
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState("kofi arhin");
+  const [email, setEmail] = useState("kofiarhin5@gmail.com");
+  const [password, setPassword] = useState("password");
+  const { mutate, isLoading, error } = useRegisterMutation();
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log("Registering with:", { username, email, password });
+    mutate({ name, email, password });
   };
 
   return (
@@ -17,8 +20,8 @@ const Register = () => {
         <input
           type="text"
           placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           required
         />
         <input

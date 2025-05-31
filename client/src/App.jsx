@@ -6,8 +6,15 @@ import Register from "./Pages/Register/Register";
 import Movie from "./Pages/Movie/Movie";
 import SearchPage from "./Pages/Search/SearchPage";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import { useEffect } from "react";
 // app
 const App = () => {
+  // useEffect(() => {
+  //   fetch("/api/users")
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // }, []);
   return (
     <Router>
       <Header />
@@ -18,7 +25,9 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/movies/:id" element={<Movie />} />
           <Route path="/search" element={<SearchPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
         </Routes>
       </div>
     </Router>

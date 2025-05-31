@@ -1,5 +1,3 @@
-@import "../../variables.scss";
-
 .movie-list {
   img {
     width: 300px;
@@ -10,13 +8,13 @@
       margin-bottom: 1rem;
     }
     a {
-      background-color: $red;
+      background-color: red;
       color: white;
       padding: 0.5rem 1rem;
       transition: all ease-in-out 300ms;
       &:hover {
         background-color: white;
-        color: $red;
+        color: red;
       }
     }
   }

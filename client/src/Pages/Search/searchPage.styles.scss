@@ -1,5 +1,12 @@
 .search {
-  padding-bottom: 1rem;
+  padding: 2rem 0rem;
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    span {
+      color: red;
+    }
+  }
   button {
     display: inline-block;
     width: 100%;
