@@ -8,7 +8,7 @@ export default defineConfig({
     port: 4000,
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target: "https://kf-rt-movie-app.onrender.com",
         changeOrigin: true,
       },
     },
