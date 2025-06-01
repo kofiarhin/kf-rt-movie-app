@@ -19,7 +19,8 @@ const Home = () => {
 
   return (
     <div id="home">
-      {data && <MovieList data={data} />}
+      {/* list of movies */}
+      <div> {data && <MovieList data={data} />} </div>
       <button onClick={handleLoadMore}>Load More</button>
     </div>
   );

@@ -1,9 +1,18 @@
 .movie-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
   img {
-    width: 300px;
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+    flex: 1;
   }
   .movie-item {
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     p {
       margin-bottom: 1rem;
     }
@@ -12,10 +21,24 @@
       color: white;
       padding: 0.5rem 1rem;
       transition: all ease-in-out 300ms;
+      display: block;
+      width: 80px;
       &:hover {
         background-color: white;
         color: red;
       }
     }
+  }
+}
+
+@media (max-width: 1200px) {
+  .movie-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .movie-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
