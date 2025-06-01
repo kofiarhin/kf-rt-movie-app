@@ -4,6 +4,12 @@ A real-time movie browsing and discovery web app built with React. Users can exp
 
 ---
 
+## 🌐 Live Demo
+
+👉 <a href="https://kf-rt-movie-app.vercel.app/" target="_blank">Check it out here</a>
+
+---
+
 ## 🚀 Features
 
 - 🔥 View trending movies in real-time
@@ -14,10 +20,6 @@ A real-time movie browsing and discovery web app built with React. Users can exp
 - 🔧 Easy to extend and customize
 
 ---
-
-## 🌐 Live Demo
-
-👉 <a href="https://kf-rt-movie-app.vercel.app/" target="_blank">Check it out here</a>
 
 ---
 
