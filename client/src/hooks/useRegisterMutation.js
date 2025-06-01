@@ -1,9 +1,15 @@
 import { Mutation, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { baseurl, env } from "../config/lib";
 
 const registerUser = async (userData) => {
   try {
-    const res = await fetch("/api/auth/register", {
+    const url =
+      env === "production"
+        ? `${baseurl}/api/auth/register`
+        : "http://localhost:5000/api/auth/register";
+
+    const res = await fetch(url, {
       headers: {
         "content-type": "application/json",
       },

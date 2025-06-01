@@ -3,9 +3,9 @@ import useRegisterMutation from "../../hooks/useRegisterMutation";
 
 // register page
 const Register = () => {
-  const [name, setName] = useState("kofi arhin");
-  const [email, setEmail] = useState("kofiarhin5@gmail.com");
-  const [password, setPassword] = useState("password");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { mutate, isLoading, error } = useRegisterMutation();
 
   const handleRegister = (e) => {
