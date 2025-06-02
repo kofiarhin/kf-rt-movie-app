@@ -11,8 +11,28 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 20px;
+    .backdrop {
+      display: none;
+    }
+    .poster {
+      display: none;
+    }
     img {
       width: 100%;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  #movie {
+    .content-wrapper {
+      display: block;
+      img {
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
     }
   }
 }

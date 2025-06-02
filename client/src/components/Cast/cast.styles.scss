@@ -6,3 +6,14 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .cast-item {
+    p {
+      font-size: 0.8rem;
+    }
+    img {
+      width: 80px;
+    }
+  }
+}

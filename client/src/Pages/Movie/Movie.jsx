@@ -8,6 +8,7 @@ import Cast from "../../components/Cast/Cast";
 import LazyImage from "../../components/Lazy/LazyImage";
 import useTrailer from "../../hooks/useTrailer";
 import { Link } from "react-router-dom";
+import Trailer from "../../components/Trailer/Trailer";
 
 const Movie = () => {
   const { id } = useParams();
@@ -33,7 +34,7 @@ const Movie = () => {
   return (
     <div id="movie">
       <div className="content-wrapper">
-        <Image url={movieData.poster_path} />
+        <Image url={movieData.poster_path} className="poster" />
         <div className="details-wrapper">
           <h1 className="heading"> {movieData.original_title} </h1>
           <p> {movieData.overview} </p>
@@ -51,17 +52,7 @@ const Movie = () => {
       {/* "63f011fc52497800dc42bac5" */}
       {/* 8hP9D6kZseM" */}
       <h2>Trailer</h2>
-      {console.log(trailerData.key)}
-      <iframe
-        width="560"
-        height="315"
-        src={`https://www.youtube.com/embed/${trailerKey}`}
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-      <Link to={trailerKey}> Play Trailer </Link>
+      <Trailer trailerKey={trailerKey} />
     </div>
   );
 };
