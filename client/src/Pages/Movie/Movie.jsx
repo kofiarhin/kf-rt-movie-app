@@ -1,57 +1,42 @@
-import "./movie.styles.scss";
 import { useParams } from "react-router-dom";
 import useMovie from "../../hooks/useMovie";
-import Spinner from "../../components/Spinner/Spinner";
 import Image from "../../components/Image/Image";
-import useCredits from "../../hooks/useCredits";
 import Cast from "../../components/Cast/Cast";
-import LazyImage from "../../components/Lazy/LazyImage";
-import useTrailer from "../../hooks/useTrailer";
-import { Link } from "react-router-dom";
+import "./movie.styles.scss";
 import Trailer from "../../components/Trailer/Trailer";
-
+// movie
 const Movie = () => {
   const { id } = useParams();
-  // const { data: creditsData } = useCredits(id);
-  const { data, isLoading, error } = useMovie(id);
-  // const { data: trailerData } = useTrailer(id);
+  const { data } = useMovie(id);
 
-  let movieData, trailerData, castData, trailerKey;
-  if (data) {
-    movieData = data[0];
-    castData = data[1].cast;
-    trailerData = data[2].results[0];
-    trailerKey = trailerData.key;
-  }
+  if (!data) return <h1>Movie Not found</h1>;
+  const movieData = data.movie;
+  const castData = data.cast.cast;
+  const trailerKey = data.trailer.results[0]?.key;
 
-  if (error)
-    return (
-      <div>
-        <h1 className="heading error"> Movei not found</h1>
-      </div>
-    );
-  if (isLoading) return <Spinner />;
   return (
     <div id="movie">
       <div className="content-wrapper">
-        <Image url={movieData.poster_path} className="poster" />
+        <div className="image-wrapper">
+          <Image url={movieData.poster_path} alt="" />
+        </div>
         <div className="details-wrapper">
-          <h1 className="heading"> {movieData.original_title} </h1>
-          <p> {movieData.overview} </p>
+          <h1> {movieData.title} </h1>
+          <h2>Overview</h2>
+          <p>{movieData.overview} </p>
+          <p>Genres</p>
           <p>
-            Genere:{" "}
             {movieData.genres.map((g) => (
-              <span key={g.name}> {g.name} </span>
+              <span key={g}> {g.name} </span>
             ))}{" "}
           </p>
+          <p> Rating: {movieData.vote_average}.0 </p>
         </div>
       </div>
-
+      <h2>Cast</h2>
       <Cast data={castData} />
 
-      {/* "63f011fc52497800dc42bac5" */}
-      {/* 8hP9D6kZseM" */}
-      <h2>Trailer</h2>
+      <h2>Traler</h2>
       <Trailer trailerKey={trailerKey} />
     </div>
   );

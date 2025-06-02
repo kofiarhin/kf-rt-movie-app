@@ -7,6 +7,7 @@ const MovieList = ({ data }) => {
     return <div>No movies found.</div>;
   }
 
+  console.log(data);
   return (
     <div className="movie-list">
       {data.map((movie) => {
@@ -18,7 +19,7 @@ const MovieList = ({ data }) => {
           >
             <Image url={movie.poster_path} />
             <div>
-              <h3>{movie.original_name}</h3>
+              <h3>{movie.original_title}</h3>
               <p> Rating: {movie.vote_average} </p>
             </div>
           </Link>

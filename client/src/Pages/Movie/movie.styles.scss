@@ -1,38 +1,20 @@
 #movie {
-  padding: 2rem 0rem;
-  h1 {
-    font-size: 3rem;
-  }
-  p span {
-    display: inline-block;
-    margin-right: 0.5rem;
+  padding: 2rem 0rem 8rem;
+  img {
+    width: 100%;
   }
   .content-wrapper {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 20px;
-    .backdrop {
-      display: none;
-    }
-    .poster {
-      display: none;
-    }
-    img {
-      width: 100%;
-    }
   }
 }
 
-@media (max-width: 800px) {
-  #movie {
-    .content-wrapper {
-      display: block;
-      img {
-        margin-bottom: 1rem;
-      }
-      h1 {
-        font-size: 1.6rem;
-      }
+@media (max-width: 960px) {
+  #movie .content-wrapper {
+    display: block;
+    img {
+      width: 300px;
     }
   }
 }
