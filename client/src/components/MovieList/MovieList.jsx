@@ -10,16 +10,18 @@ const MovieList = ({ data }) => {
   return (
     <div className="movie-list">
       {data.map((movie) => {
-        console.log(movie);
         return (
-          <div key={movie.id} className="movie-item">
+          <Link
+            to={`/movies/${movie.id}`}
+            key={movie.id}
+            className="movie-item"
+          >
             <Image url={movie.poster_path} />
             <div>
               <h3>{movie.original_name}</h3>
               <p> Rating: {movie.vote_average} </p>
-              <Link to={`/movies/${movie.id}`}> View More</Link>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>
