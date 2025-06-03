@@ -1,10 +1,5 @@
 ###
-POST http://localhost:5000/api/auth/register
-Content-Type: application/json
+GET http://localhost:500/api/users
 
-{
-    "name": "lebron james", 
-    "email": "lebron@gmail.com",
-    "password": "pasword"
-}
+
 

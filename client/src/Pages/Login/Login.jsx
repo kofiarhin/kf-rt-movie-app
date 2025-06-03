@@ -4,7 +4,8 @@ import useLoginmutation from "../../hooks/useLoginMutation";
 const Login = () => {
   const [email, setEmail] = useState("kofiarhin5@gmail.com");
   const [password, setPassword] = useState("password");
-  const { mutate } = useLoginmutation();
+  const { mutate, isLoading, isSuccess } = useLoginmutation();
+  console.log("xxxx", isLoading, isSuccess);
 
   const handleLogin = (e) => {
     e.preventDefault();

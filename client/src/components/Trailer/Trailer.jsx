@@ -1,6 +1,9 @@
+import "./trailer.styles.scss";
+
 const Trailer = ({ trailerKey }) => {
   return (
     <div
+      className="trailer"
       style={{
         position: "relative",
         paddingBottom: "56.25%",

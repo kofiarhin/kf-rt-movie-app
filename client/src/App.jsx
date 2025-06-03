@@ -8,6 +8,8 @@ import SearchPage from "./Pages/Search/SearchPage";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
+import Footer from "./components/Footer/Footer";
+
 // app
 const App = () => {
   // useEffect(() => {
@@ -30,6 +32,7 @@ const App = () => {
           </Route>
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 };

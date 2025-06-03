@@ -1,3 +1,4 @@
+// hooks/useLoginMutation.js
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -9,6 +10,9 @@ const loginUser = async (userData) => {
     env === "production"
       ? `${baseurl}/api/auth/login`
       : "http://localhost:5000/api/auth/login";
+
+  console.log(url);
+
   const res = await fetch(url, {
     headers: {
       "content-type": "application/json",
@@ -18,30 +22,28 @@ const loginUser = async (userData) => {
   });
 
   if (!res.ok) {
-    throw new Error("somethign went wrong");
+    throw new Error("Something went wrong");
   }
 
-  const data = await res.json();
-
-  return data;
+  return await res.json();
 };
 
-// useLoginMutation
-const useLoginmutation = () => {
+const useLoginMutation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   return useMutation({
-    mutationKey: "login",
-    mutationFn: (userData) => loginUser(userData),
+    mutationKey: ["login"],
+    mutationFn: loginUser,
     onSuccess: (data) => {
       localStorage.setItem("user", JSON.stringify(data));
       dispatch(setUser(data));
       navigate("/dashboard");
     },
-    onError: (data) => {
-      console.log("error", data);
+    onError: (error) => {
+      console.error("Login failed:", error);
     },
   });
 };
 
-export default useLoginmutation;
+export default useLoginMutation;

@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoute.js";
 import auth from "./middleware/auth.js";
 import User from "./models/userModel.js";
+import playListRoutes from "./routes/playListRoutes.js";
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.get("/api/users", async (req, res) => {
 });
 app.use("/api/auth", authRoutes);
 app.use("/api/check", auth);
+app.use("/api/dev", playListRoutes);
 
 export default app;
