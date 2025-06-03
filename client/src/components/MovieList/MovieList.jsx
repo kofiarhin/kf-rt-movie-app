@@ -7,7 +7,6 @@ const MovieList = ({ data }) => {
     return <div>No movies found.</div>;
   }
 
-  console.log(data);
   return (
     <div className="movie-list">
       {data.map((movie) => {

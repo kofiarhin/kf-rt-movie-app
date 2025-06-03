@@ -20,7 +20,6 @@ const Movie = () => {
   const castData = data.cast.cast;
   const trailerKey = data.trailer.results[0]?.key;
   const recommendedData = data.recommended.results.splice(0, 6);
-  console.log(recommendedData);
 
   const handleSave = async () => {
     mutate({ userId: user._id, movieId: movieData.id });
@@ -28,6 +27,8 @@ const Movie = () => {
 
   return (
     <div id="movie">
+      <h2>Trailer</h2>
+      <Trailer trailerKey={trailerKey} />
       <div className="content-wrapper">
         <div className="image-wrapper">
           <Image url={movieData.poster_path} alt="" />
@@ -46,8 +47,7 @@ const Movie = () => {
           {user && <button onClick={handleSave}>Save to WatchList</button>}
         </div>
       </div>
-      <h2>Trailer</h2>
-      <Trailer trailerKey={trailerKey} />
+
       <Cast data={castData} />
       <h2>Related Movies</h2>
       <MovieList data={recommendedData} />
