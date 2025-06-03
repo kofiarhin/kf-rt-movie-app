@@ -9,6 +9,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
 import Footer from "./components/Footer/Footer";
+import Playground from "./Pages/Playground/Playground";
+import CharacterMovies from "./Pages/CharacterMovies/CharacterMovies";
 
 // app
 const App = () => {
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/movies/:id" element={<Movie />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/playground" element={<Playground />} />
+          <Route path="/character_movies" element={<CharacterMovies />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>

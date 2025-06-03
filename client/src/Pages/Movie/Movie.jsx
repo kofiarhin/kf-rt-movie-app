@@ -19,7 +19,7 @@ const Movie = () => {
   const movieData = data.movie;
   const castData = data.cast.cast;
   const trailerKey = data.trailer.results[0]?.key;
-  const recommendedData = data.recommended.results.splice(0, 3);
+  const recommendedData = data.recommended.results.splice(0, 6);
   console.log(recommendedData);
 
   const handleSave = async () => {
