@@ -1,8 +1,13 @@
 import { Router } from "express";
+import auth from "../middleware/auth.js";
+import {
+  createPlayList,
+  getPlayList,
+} from "../controllers/playListController.js";
 
 const router = Router();
 
-router.post("/", async (req, res, next) => {
-  return res.json({ message: "save to playlist" });
-});
+router.post("/", auth, createPlayList);
+
+router.get("/", auth, getPlayList);
 export default router;

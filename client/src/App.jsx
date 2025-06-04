@@ -11,14 +11,11 @@ import { useEffect } from "react";
 import Footer from "./components/Footer/Footer";
 import Playground from "./Pages/Playground/Playground";
 import CharacterMovies from "./Pages/CharacterMovies/CharacterMovies";
+import { useSelector } from "react-redux";
+import usePlayListQuery from "./hooks/usePlayListQuery";
 
 // app
 const App = () => {
-  // useEffect(() => {
-  //   fetch("/api/users")
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data));
-  // }, []);
   return (
     <Router>
       <Header />

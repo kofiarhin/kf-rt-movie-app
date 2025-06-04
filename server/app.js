@@ -19,6 +19,6 @@ app.get("/api/users", async (req, res) => {
 });
 app.use("/api/auth", authRoutes);
 app.use("/api/check", auth);
-app.use("/api/dev", playListRoutes);
+app.use("/api/play_list", playListRoutes);
 
 export default app;

@@ -51,9 +51,14 @@ const loginUser = async (req, res, next) => {
       expiresIn: "30d",
     });
 
-    res.cookie("jwt", token);
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
+
     const { password: userPassword, ...rest } = foundUser._doc;
-    return res.json(rest);
+    return res.json({ ...rest, token });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

@@ -1,56 +1,87 @@
-import { useParams } from "react-router-dom";
 import useMovie from "../../hooks/useMovie";
-import Image from "../../components/Image/Image";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import Spinner from "../../components/Spinner/Spinner";
+import usePlayListQuery from "../../hooks/usePlayListQuery";
+import Trailer from "../../components/Trailer/Trailer";
 import Cast from "../../components/Cast/Cast";
 import "./movie.styles.scss";
-import Trailer from "../../components/Trailer/Trailer";
-import usePlayListMutation from "../../hooks/usePlayListMutation";
 import MovieList from "../../components/MovieList/MovieList";
+import usePlayListMutation from "../../hooks/usePlayListMutation";
 
-// movie
 const Movie = () => {
-  const { id } = useParams();
-  const { data } = useMovie(id);
+  const { id: movieId } = useParams();
   const { user } = useSelector((state) => state.auth);
-  const { mutate } = usePlayListMutation();
+  const { data: movieData, isLoading } = useMovie(movieId);
+  const { data: playListData } = usePlayListQuery(user);
+  const { mutate, isLoading: isSaving } = usePlayListMutation();
 
-  if (!data) return <h1>Movie Not found</h1>;
-  const movieData = data.movie;
-  const castData = data.cast.cast;
-  const trailerKey = data.trailer.results[0]?.key;
-  const recommendedData = data.recommended.results.splice(0, 6);
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (isSaving) {
+    return <Spinner />;
+  }
 
   const handleSave = async () => {
-    mutate({ userId: user._id, movieId: movieData.id });
+    console.log("add to play list");
+    mutate({
+      userId: user._id,
+      movieId: movieData.movie.id,
+      token: user.token,
+      poster_path: movieData.movie.poster_path,
+      backdrop_path: movieData.backdrop_path,
+      overview: movieData.movie.overview,
+      runtime: movieData.movieruntime,
+      original_title: movieData.movie.original_title,
+      vote_rating: movieData.movie.vote_rating,
+      imdb_id: movieData.movie.imdb_id,
+    });
+  };
+
+  const handleRemove = async () => {
+    console.log("remove item from playlist");
+  };
+
+  const renderButton = (data, id) => {
+    const found = data.find((d) => d.movieId === parseInt(id));
+
+    if (found) {
+      return (
+        <button className="remove" onClick={handleRemove}>
+          {" "}
+          Remove From Play list
+        </button>
+      );
+    }
+    return <button onClick={handleSave}>Add To PlayList</button>;
   };
 
   return (
     <div id="movie">
-      <h2>Trailer</h2>
-      <Trailer trailerKey={trailerKey} />
-      <div className="content-wrapper">
-        <div className="image-wrapper">
-          <Image url={movieData.poster_path} alt="" />
-        </div>
-        <div className="details-wrapper">
-          <h1> {movieData.title} </h1>
-          <h2>Overview</h2>
-          <p>{movieData.overview} </p>
-          <p>Genres</p>
-          <p>
-            {movieData.genres.map((g) => (
-              <span key={g}> {g.name} </span>
-            ))}{" "}
-          </p>
-          <p> Rating: {movieData.vote_average}.0 </p>
-          {user && <button onClick={handleSave}>Save to WatchList</button>}
-        </div>
+      <h1> {movieData.movie.original_title} </h1>
+      {movieData && movieData.trailerKey && (
+        <Trailer trailerKey={movieData.trailerKey} />
+      )}
+      {user && playListData && renderButton(playListData, movieId)}
+
+      {/* details */}
+      <div className="movie-details">
+        <p> {movieData.movie.overview} </p>
       </div>
 
-      <Cast data={castData} />
-      <h2>Related Movies</h2>
-      <MovieList data={recommendedData} />
+      {/* cast */}
+      <div>
+        <h2>Cast</h2>
+        <Cast data={movieData.cast.cast} />
+      </div>
+
+      {/* recomended */}
+      <div>
+        <h2>Related Movies</h2>
+        <MovieList data={movieData.recommended.slice(1, 5)} />
+      </div>
     </div>
   );
 };

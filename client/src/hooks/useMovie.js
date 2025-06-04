@@ -18,7 +18,12 @@ const getMovie = async (movieId) => {
     })
   );
 
-  return { movie, cast, trailer, recommended };
+  return {
+    movie,
+    cast,
+    trailerKey: trailer.results[0].key,
+    recommended: recommended.results,
+  };
 };
 
 const useMovie = (movieId) => {

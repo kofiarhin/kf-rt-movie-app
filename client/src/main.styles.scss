@@ -57,8 +57,18 @@ a {
   color: #e50914;
   text-decoration: none;
 }
-button { 
-  cursor: pointer; 
+
+img {
+  width: 100%;
+}
+button {
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .container {

@@ -11,8 +11,6 @@ const loginUser = async (userData) => {
       ? `${baseurl}/api/auth/login`
       : "http://localhost:5000/api/auth/login";
 
-  console.log(url);
-
   const res = await fetch(url, {
     headers: {
       "content-type": "application/json",

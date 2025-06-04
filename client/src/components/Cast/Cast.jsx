@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 const Cast = ({ data }) => {
   return (
     <div id="cast">
-      <h2>Cast</h2>
       <div className="cast-wrapper">
         {" "}
         {data.slice(0, 4).map((item) => {
-          console.log(item);
           return (
             <div key={item.id} className="cast-item">
               <LazyImage
