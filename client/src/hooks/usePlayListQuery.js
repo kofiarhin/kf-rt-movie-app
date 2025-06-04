@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { baseurl, env } from "../config/lib";
 
 const getPlayList = async (user) => {
-  const res = await fetch("/api/play_list", {
+  const prefix = `/api/play_list`;
+  const url = env === "production" ? `${baseurl}${prefix}` : prefix;
+  const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${user.token}`,
     },
