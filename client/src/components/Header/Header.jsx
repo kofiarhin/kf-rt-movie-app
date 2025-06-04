@@ -25,8 +25,8 @@ const Header = () => {
       <div className="header-right">
         {user ? (
           <>
-            <Link to="/dashboard" className="nav-link">
-              Dashboard
+            <Link to="/play_list" className="nav-link">
+              Playlist
             </Link>
 
             <button onClick={handleLogout}>Logout</button>

@@ -36,7 +36,7 @@ const useLoginMutation = () => {
     onSuccess: (data) => {
       localStorage.setItem("user", JSON.stringify(data));
       dispatch(setUser(data));
-      navigate("/dashboard");
+      navigate("/play_list");
     },
     onError: (error) => {
       console.error("Login failed:", error);

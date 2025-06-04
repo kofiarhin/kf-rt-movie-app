@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
-import "./dashboard.styles.scss";
 import usePlayListQuery from "../../hooks/usePlayListQuery";
 import Spinner from "../../components/Spinner/Spinner";
 import PlayList from "../../components/PlyaList/PlayList";
 
-const Dashboard = () => {
+const PlayListPage = () => {
   const { user } = useSelector((state) => state.auth);
   const { data, isLoading, isError } = usePlayListQuery(user);
 
@@ -23,4 +22,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default PlayListPage;

@@ -29,7 +29,7 @@ const usePlayListMutation = () => {
     mutationFn: (data) => addToPlayList(data),
     mutationKey: ["playList"],
     onSuccess: (data) => {
-      navigate("/dashboard");
+      navigate("/play_list");
     },
     onError: (data) => {
       console.log(data);

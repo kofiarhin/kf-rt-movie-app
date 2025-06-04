@@ -62,4 +62,28 @@ const getPlayList = async (req, res, next) => {
   }
 };
 
-export { createPlayList, getPlayList };
+const deletePlayList = async (req, res, next) => {
+  // check if item exist
+  const { movieId, userId } = req.body;
+  try {
+    const exist = await PlayList.findOne({ userId, movieId });
+    if (!exist) {
+      res.status(404);
+      throw new Error("play list item not found");
+    }
+
+    // delete item
+    const deletedItem = await PlayList.findOneAndDelete({ userId, movieId });
+
+    if (!deletedItem) {
+      res.status(400);
+      throw new Error("there was a problem deleting item from playlist");
+    }
+
+    return res.json(deletedItem);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+export { createPlayList, getPlayList, deletePlayList };

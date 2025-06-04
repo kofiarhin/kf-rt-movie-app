@@ -5,7 +5,6 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Movie from "./Pages/Movie/Movie";
 import SearchPage from "./Pages/Search/SearchPage";
-import Dashboard from "./Pages/Dashboard/Dashboard";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
 import Footer from "./components/Footer/Footer";
@@ -13,6 +12,7 @@ import Playground from "./Pages/Playground/Playground";
 import CharacterMovies from "./Pages/CharacterMovies/CharacterMovies";
 import { useSelector } from "react-redux";
 import usePlayListQuery from "./hooks/usePlayListQuery";
+import PlayListPage from "./Pages/PlayListPage/PlayListPage";
 
 // app
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
           <Route path="/playground" element={<Playground />} />
           <Route path="/character_movies" element={<CharacterMovies />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/play_list" element={<PlayListPage />} />
           </Route>
         </Routes>
       </div>

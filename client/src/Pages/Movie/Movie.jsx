@@ -8,6 +8,7 @@ import Cast from "../../components/Cast/Cast";
 import "./movie.styles.scss";
 import MovieList from "../../components/MovieList/MovieList";
 import usePlayListMutation from "../../hooks/usePlayListMutation";
+import useRemovePlayListMutation from "../../hooks/useRemovePlayListMutation";
 
 const Movie = () => {
   const { id: movieId } = useParams();
@@ -15,6 +16,7 @@ const Movie = () => {
   const { data: movieData, isLoading } = useMovie(movieId);
   const { data: playListData } = usePlayListQuery(user);
   const { mutate, isLoading: isSaving } = usePlayListMutation();
+  const { mutate: removeMutate } = useRemovePlayListMutation();
 
   if (isLoading) {
     return <Spinner />;
@@ -40,7 +42,14 @@ const Movie = () => {
     });
   };
 
-  const handleRemove = async () => {
+  const handleRemove = async (movieId, token, userId) => {
+    const data = {
+      movieId,
+      token,
+      userId,
+    };
+
+    removeMutate(data);
     console.log("remove item from playlist");
   };
 
@@ -49,7 +58,10 @@ const Movie = () => {
 
     if (found) {
       return (
-        <button className="remove" onClick={handleRemove}>
+        <button
+          className="remove"
+          onClick={() => handleRemove(movieId, user.token, user._id)}
+        >
           {" "}
           Remove From Play list
         </button>
