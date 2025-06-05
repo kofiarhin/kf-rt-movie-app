@@ -17,7 +17,7 @@ const Header = () => {
     <header className="header">
       <div className="header-left">
         <Link to="/" className="logo">
-          KofiFlix
+          KFlix
         </Link>
         <SearchForm />
       </div>
@@ -25,6 +25,12 @@ const Header = () => {
       <div className="header-right">
         {user ? (
           <>
+            <Link to="/for_you" className="nav-link">
+              For You
+            </Link>
+            <Link to="/profile" className="nav-link">
+              Profile
+            </Link>
             <Link to="/play_list" className="nav-link">
               Playlist
             </Link>

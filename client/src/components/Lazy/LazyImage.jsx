@@ -2,21 +2,29 @@ import { useEffect, useRef, useState } from "react";
 
 const LazyImage = ({ src, alt, ...rest }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const imgRef = useRef();
+  const imgRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(imgRef.current);
+          if (imgRef.current) {
+            observer.unobserve(imgRef.current); // ✅ safe unobserve
+          }
         }
       },
       { threshold: 0.1 }
     );
 
     if (imgRef.current) observer.observe(imgRef.current);
-    return () => observer.disconnect();
+
+    return () => {
+      if (imgRef.current) {
+        observer.unobserve(imgRef.current); // ✅ safe cleanup
+      }
+      observer.disconnect();
+    };
   }, []);
 
   return <img ref={imgRef} src={isVisible ? src : ""} alt={alt} {...rest} />;

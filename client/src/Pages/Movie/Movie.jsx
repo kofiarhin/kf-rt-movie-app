@@ -18,12 +18,12 @@ const Movie = () => {
   const { mutate, isLoading: isSaving } = usePlayListMutation();
   const { mutate: removeMutate } = useRemovePlayListMutation();
 
-  if (isLoading) {
+  if (isLoading || isSaving) {
     return <Spinner />;
   }
 
-  if (isSaving) {
-    return <Spinner />;
+  if (!movieData?.movie) {
+    return <p className="error">Movie not found or invalid data.</p>;
   }
 
   const handleSave = async () => {
@@ -48,13 +48,12 @@ const Movie = () => {
       token,
       userId,
     };
-
     removeMutate(data);
     console.log("remove item from playlist");
   };
 
   const renderButton = (data, id) => {
-    const found = data.find((d) => d.movieId === parseInt(id));
+    const found = data?.find((d) => d.movieId === parseInt(id));
 
     if (found) {
       return (
@@ -62,38 +61,39 @@ const Movie = () => {
           className="remove"
           onClick={() => handleRemove(movieId, user.token, user._id)}
         >
-          {" "}
-          Remove From Play list
+          Remove From Playlist
         </button>
       );
     }
-    return <button onClick={handleSave}>Add To PlayList</button>;
+
+    return <button onClick={handleSave}>Add To Playlist</button>;
   };
 
   return (
     <div id="movie">
-      <h1> {movieData.movie.original_title} </h1>
-      {movieData && movieData.trailerKey && (
-        <Trailer trailerKey={movieData.trailerKey} />
-      )}
+      <h1>{movieData.movie.original_title}</h1>
+
+      {movieData.trailerKey && <Trailer trailerKey={movieData.trailerKey} />}
+
       {user && playListData && renderButton(playListData, movieId)}
 
-      {/* details */}
       <div className="movie-details">
-        <p> {movieData.movie.overview} </p>
+        <p>{movieData.movie.overview}</p>
       </div>
 
-      {/* cast */}
-      <div>
-        <h2>Cast</h2>
-        <Cast data={movieData.cast.cast} />
-      </div>
+      {movieData.cast?.cast?.length > 0 && (
+        <div>
+          <h2>Cast</h2>
+          <Cast data={movieData.cast.cast} />
+        </div>
+      )}
 
-      {/* recomended */}
-      <div>
-        <h2>Related Movies</h2>
-        <MovieList data={movieData.recommended.slice(1, 5)} />
-      </div>
+      {movieData.recommended?.length > 1 && (
+        <div>
+          <h2>Related Movies</h2>
+          <MovieList data={movieData.recommended.slice(1, 5)} />
+        </div>
+      )}
     </div>
   );
 };

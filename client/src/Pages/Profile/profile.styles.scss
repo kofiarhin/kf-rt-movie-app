@@ -1,0 +1,60 @@
+#profile {
+  min-height: 80vh;
+  padding-bottom: 4rem;
+  button {
+    display: block;
+    padding: 0.8rem 0rem;
+    width: 100%;
+    &.reset {
+      background-color: red;
+      color: white;
+    }
+  }
+  .genres-wrapper {
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    .genre-unit {
+      padding: 1rem 0rem;
+      text-align: center;
+      transition: all ease-int-out 300ms;
+      &.selected {
+        background-color: orange;
+      }
+      &:hover {
+        background-color: white;
+        color: black;
+        cursor: pointer;
+      }
+    }
+  }
+
+  #actors {
+    margin-top: 2rem;
+    .actors-wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      .actor-unit {
+        text-align: center;
+        cursor: pointer;
+        &.selected-actor {
+          border: 8px solid red;
+        }
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  #profile {
+    .genres-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0.5rem 0rem;
+    }
+  }
+}

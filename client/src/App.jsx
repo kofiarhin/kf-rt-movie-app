@@ -13,6 +13,8 @@ import CharacterMovies from "./Pages/CharacterMovies/CharacterMovies";
 import { useSelector } from "react-redux";
 import usePlayListQuery from "./hooks/usePlayListQuery";
 import PlayListPage from "./Pages/PlayListPage/PlayListPage";
+import Profile from "./Pages/Profile/Profile";
+import ForYou from "./Pages/ForYou/ForYou";
 
 // app
 const App = () => {
@@ -30,6 +32,8 @@ const App = () => {
           <Route path="/character_movies" element={<CharacterMovies />} />
           <Route element={<PrivateRoute />}>
             <Route path="/play_list" element={<PlayListPage />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="for_you" element={<ForYou />} />
           </Route>
         </Routes>
       </div>

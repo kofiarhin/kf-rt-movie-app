@@ -9,7 +9,6 @@ const getGenres = async () => {
     throw new Error("something went wrong getting genres");
   }
   const data = await res.json();
-  console.log(data.genres);
   return data.genres;
 };
 
