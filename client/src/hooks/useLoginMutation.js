@@ -1,4 +1,3 @@
-// hooks/useLoginMutation.js
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -12,18 +11,21 @@ const loginUser = async (userData) => {
       : "http://localhost:5000/api/auth/login";
 
   const res = await fetch(url, {
-    headers: {
-      "content-type": "application/json",
-    },
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(userData),
   });
 
+  const data = await res.json();
+
   if (!res.ok) {
-    throw new Error("Something went wrong");
+    const errorMessage = data?.message || "Login failed";
+    throw new Error(errorMessage);
   }
 
-  return await res.json();
+  return data;
 };
 
 const useLoginMutation = () => {
@@ -39,7 +41,7 @@ const useLoginMutation = () => {
       navigate("/play_list");
     },
     onError: (error) => {
-      console.error("Login failed:", error);
+      console.error("Login failed:", error.message);
     },
   });
 };
