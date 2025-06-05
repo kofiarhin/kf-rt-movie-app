@@ -3,6 +3,9 @@
   .play-list-item {
     display: flex;
     margin-bottom: 1rem;
+    a {
+      color: white;
+    }
     img {
       width: 150px;
       margin-right: 1rem;
@@ -12,6 +15,14 @@
       background-color: red;
       padding: 0.5rem 1rem;
       cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  #play-list {
+    .play-list-item {
+      flex-direction: column;
     }
   }
 }

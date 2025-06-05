@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { env, baseurl } from "../config/lib";
 import { useNavigate } from "react-router-dom";
 
@@ -25,11 +25,13 @@ const addToPlayList = async (data) => {
 };
 const usePlayListMutation = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data) => addToPlayList(data),
     mutationKey: ["playList"],
     onSuccess: (data) => {
-      navigate("/play_list");
+      // navigate("/play_list");
+      queryClient.invalidateQueries(["playlist"]);
     },
     onError: (data) => {
       console.log(data);

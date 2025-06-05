@@ -12,10 +12,7 @@ const PlayListPage = () => {
   }
   return (
     <div id="dashboard">
-      <h1 className="heading">
-        {" "}
-        Welcome <span>{user?.name}</span>{" "}
-      </h1>
+      <h1 className="heading"> Your play list</h1>
 
       <PlayList data={data} />
     </div>

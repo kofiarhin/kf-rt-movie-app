@@ -19,9 +19,11 @@ const CharacterMovies = () => {
 
   return (
     <div id="character_movies">
-      <LazyImage
-        src={`https://image.tmdb.org/t/p/w185/${data.profile_path}.jpg`}
-      />
+      <div className="image-container">
+        <LazyImage
+          src={`https://image.tmdb.org/t/p/w185/${data.profile_path}.jpg`}
+        />
+      </div>
 
       <h2> {data.original_name} </h2>
 

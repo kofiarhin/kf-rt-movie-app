@@ -37,6 +37,7 @@ const useLoginMutation = () => {
     mutationFn: loginUser,
     onSuccess: (data) => {
       localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("token", data.token);
       dispatch(setUser(data));
       navigate("/play_list");
     },
