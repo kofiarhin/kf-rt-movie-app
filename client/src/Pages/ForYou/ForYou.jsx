@@ -9,10 +9,16 @@ const ForYou = () => {
   const { user } = useSelector((state) => state.auth);
   const { data: genreData } = useUserGenres(user);
   const { data: actorsData } = useActorsLocal(user);
-  const { data: preferenceData, isLoading } = usePreferencesQuery({
+  const {
+    data: preferenceData,
+    isLoading,
+    error,
+  } = usePreferencesQuery({
     genres: genreData,
     actors: actorsData,
   });
+
+  console.log(error);
 
   if (isLoading) {
     return <Spinner />;
