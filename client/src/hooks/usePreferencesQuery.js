@@ -1,55 +1,41 @@
-import { apiKey } from "../config/lib";
 import { useQuery } from "@tanstack/react-query";
+import { apiKey } from "../config/lib";
 
-/**
- * Fetch recommended movies from TMDB based on user preferences.
- * Prioritizes actors > genres > fallback (no filters).
- */
-const getPreferences = async (preferences = {}) => {
-  try {
-    const genres = Array.isArray(preferences.genres) ? preferences.genres : [];
-    const actors = Array.isArray(preferences.actors) ? preferences.actors : [];
+const getPreferences = async (data) => {
+  // first request url
 
-    const genreString = genres.length ? genres.join(",") : null;
-    const actorsString = actors.length ? actors.join(",") : null;
+  const result = await Promise.all(
+    data?.actors?.map(async (actor) => {
+      const url = `https://api.themoviedb.org/3/person/${actor.id}/movie_credits?api_key=${apiKey}`;
+      const res = await fetch(url);
 
-    let url;
+      if (!res.ok) {
+        throw new Error("something went wrong getting movies for you");
+      }
 
-    if (actorsString) {
-      // Priority 1: Actor-based recommendation
-      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_cast=${actorsString}&with_original_language=en&vote_average.gte=7&sort_by=popularity.desc&page=1`;
-    } else if (genreString) {
-      // Priority 2: Genre-based recommendation
-      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreString}&with_original_language=en&vote_average.gte=7&sort_by=popularity.desc&page=1`;
-    } else {
-      // Priority 3: Fallback to popular movies
-      url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&page=1`;
-    }
+      const resData = await res.json();
+      return resData.cast;
+    })
+  );
 
-    const res = await fetch(url);
-    if (!res.ok) {
-      const error = await res.json();
-      throw new Error(error.status_message || "Failed to fetch movies.");
-    }
+  const flatArray = result.flat();
+  const uniqueArray = Array.from(
+    new Map(flatArray.map((item) => [item.id, item])).values()
+  );
+  const sortedByRating = uniqueArray.sort(
+    (a, b) => b.vote_average - a.vote_average
+  );
+  console.log(sortedByRating);
 
-    const data = await res.json();
-    return data.results;
-  } catch (error) {
-    console.error("getPreferences error:", error.message);
-    throw error;
-  }
+  return sortedByRating;
 };
 
-/**
- * React Query hook for getting recommended movies based on user preferences.
- */
-const usePreferencesQuery = (preferences) => {
+const usePreferenceQuery = (data) => {
   return useQuery({
-    queryKey: ["preferences", preferences],
-    queryFn: () => getPreferences(preferences),
-    enabled: !!preferences,
-    staleTime: 1000 * 60 * 5, // 5 minutes cache
+    queryKey: ["prefdrences", data],
+    queryFn: () => getPreferences(data),
+    enabled: !!data,
   });
 };
 
-export default usePreferencesQuery;
+export default usePreferenceQuery;

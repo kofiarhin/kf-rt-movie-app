@@ -1,34 +1,28 @@
-import useUserGenres from "../../hooks/useUserGenres";
-import { useSelector } from "react-redux";
-import usePreferencesQuery from "../../hooks/usePreferencesQuery";
+import usePreferenceQuery from "../../hooks/usePreferencesQuery";
+import useActorsQuery from "../../hooks/useActorsQuery";
 import Spinner from "../../components/Spinner/Spinner";
 import MovieList from "../../components/MovieList/MovieList";
-import useActorsLocal from "../../hooks/useActorsLocal";
+
+function getRandomSlice(data) {
+  const max = data.length;
+  if (max === 0) return [];
+
+  const start = Math.floor(Math.random() * max);
+  const range = Math.floor(Math.random() * 3) + 1; // 1 to 3
+  const end = Math.min(start + range, max);
+
+  return data.slice(start, end);
+}
 
 const ForYou = () => {
-  const { user } = useSelector((state) => state.auth);
-  const { data: genreData } = useUserGenres(user);
-  const { data: actorsData } = useActorsLocal(user);
-  const {
-    data: preferenceData,
-    isLoading,
-    error,
-  } = usePreferencesQuery({
-    genres: genreData,
-    actors: actorsData,
+  const { data: actorsData } = useActorsQuery();
+  const { data: preferenceData = [], isLoading } = usePreferenceQuery({
+    actors: actorsData ? getRandomSlice(actorsData) : [],
   });
 
-  console.log(error);
+  if (isLoading) return <Spinner />;
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-  return (
-    <div>
-      <h1 className="heading">For you</h1>
-      {preferenceData && <MovieList data={preferenceData} />}
-    </div>
-  );
+  return <div>{preferenceData && <MovieList data={preferenceData} />}</div>;
 };
 
 export default ForYou;
