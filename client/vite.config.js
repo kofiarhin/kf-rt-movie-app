@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 4000,
+    historyApiFallback: true,
     proxy: {
       "/api": {
         target: "http://localhost:5000",
