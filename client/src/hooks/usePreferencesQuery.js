@@ -25,7 +25,6 @@ const getPreferences = async (data) => {
   const sortedByRating = uniqueArray.sort(
     (a, b) => b.vote_average - a.vote_average
   );
-  console.log(sortedByRating);
 
   return sortedByRating;
 };

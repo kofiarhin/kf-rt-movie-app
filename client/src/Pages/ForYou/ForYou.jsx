@@ -2,6 +2,7 @@ import usePreferenceQuery from "../../hooks/usePreferencesQuery";
 import useActorsQuery from "../../hooks/useActorsQuery";
 import Spinner from "../../components/Spinner/Spinner";
 import MovieList from "../../components/MovieList/MovieList";
+import "./forYou.styles.scss";
 
 function getRandomSlice(data) {
   const max = data.length;
@@ -22,7 +23,14 @@ const ForYou = () => {
 
   if (isLoading) return <Spinner />;
 
-  return <div>{preferenceData && <MovieList data={preferenceData} />}</div>;
+  return (
+    <div id="for-you">
+      <h2>For you</h2>
+      <div className="for-you-wrapper">
+        {preferenceData && <MovieList data={preferenceData} />}
+      </div>
+    </div>
+  );
 };
 
 export default ForYou;

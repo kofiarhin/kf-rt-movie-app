@@ -71,7 +71,7 @@ const Movie = () => {
 
   return (
     <div id="movie">
-      <h1>{movieData.movie.original_title}</h1>
+      <h2>{movieData.movie.original_title}</h2>
 
       {movieData.trailerKey && <Trailer trailerKey={movieData.trailerKey} />}
 
