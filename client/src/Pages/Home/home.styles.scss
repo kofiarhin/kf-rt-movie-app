@@ -28,3 +28,12 @@
     margin-top: 1rem;
   }
 }
+
+@media (max-width: 800px) {
+  #home {
+    select {
+      display: block;
+      width: 100%;
+    }
+  }
+}
