@@ -19,7 +19,6 @@ const Header = () => {
   const toggleSideNav = () => {
     setIsOpen((prev) => !prev);
   };
-  console.log(isOpen);
   return (
     <header className="header">
       <div className="container">

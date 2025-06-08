@@ -5,6 +5,7 @@ import MovieList from "../../components/MovieList/MovieList";
 import LazyImage from "../../components/Lazy/LazyImage";
 import "./characterMovies.styles.scss";
 import useWikipedia from "../../hooks/useWikipedia";
+import useMovieAi from "../../hooks/useMovieAi";
 
 // character movies
 const CharacterMovies = () => {
@@ -12,6 +13,8 @@ const CharacterMovies = () => {
   const query = searchParams.get("query"); // returns '28' if URL is ?genre=28
   const { data: wikiData } = useWikipedia(query);
   const { data, isLoading } = useCharacterMovies(query);
+
+  const { data: characeterData } = useMovieAi(query);
 
   if (isLoading) {
     return <Spinner />;
@@ -26,6 +29,8 @@ const CharacterMovies = () => {
       </div>
 
       <h2> {data.original_name} </h2>
+
+      {characeterData && <p> {characeterData?.message} </p>}
 
       <h2>Featured Movies</h2>
       <div>{data && <MovieList data={data.known_for} />}</div>

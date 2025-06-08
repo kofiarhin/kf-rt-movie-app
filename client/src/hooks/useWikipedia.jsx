@@ -12,7 +12,6 @@ const getInfo = async (query) => {
     throw new Error("something went wrong geting info from wiki");
   }
   const data = await res.json();
-  console.log(data.query);
   return { data: "get query info" };
 };
 const useWikipedia = (query) => {
