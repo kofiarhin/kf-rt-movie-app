@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiKey } from "../config/lib";
 
-const getCustomMovies = async (query) => {
+const getCustomMovies = async (query, pageNumber = 1) => {
   try {
-    const topMoviesTUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_average.desc&vote_count.gte=1000&page=1
+    const topMoviesTUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_average.desc&vote_count.gte=1000&page=${pageNumber}
 `;
     const res = await fetch(topMoviesTUrl);
     if (!res.ok) {
@@ -18,9 +18,9 @@ const getCustomMovies = async (query) => {
   }
 };
 
-const useCustomMoviesQuery = (query) => {
+const useCustomMoviesQuery = (query, pageNumber = 1) => {
   return useQuery({
-    queryKey: ["custom movies"],
+    queryKey: ["custom movies", pageNumber],
     queryFn: () => getCustomMovies(query),
     enabled: !!query,
   });
