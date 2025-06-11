@@ -9,6 +9,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   const { user } = useSelector((state) => state.auth);
   const { logout } = useAuth();
 
@@ -19,13 +20,15 @@ const Header = () => {
   const toggleSideNav = () => {
     setIsOpen((prev) => !prev);
   };
+
   return (
-    <header className="header">
+    <header id="header">
       <div className="container">
         <div className="header-left">
           <Link to="/" className="logo">
-            KFlix
+            <h1>Kflix</h1>
           </Link>
+          <FaBars className="menu" color="white" onClick={toggleSideNav} />
         </div>
 
         <SearchForm className="search" />
@@ -39,9 +42,7 @@ const Header = () => {
               <Link to="/for_you" className="nav-link">
                 For You
               </Link>
-              <Link to="/profile" className="nav-link">
-                Preferences
-              </Link>
+
               <Link to="/play_list" className="nav-link">
                 Playlist
               </Link>
@@ -59,7 +60,6 @@ const Header = () => {
             </>
           )}
         </div>
-        <FaBars className="menu" color="white" onClick={toggleSideNav} />
       </div>
     </header>
   );
