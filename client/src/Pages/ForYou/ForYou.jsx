@@ -4,6 +4,7 @@ import useActorsQuery from "../../hooks/useActorsQuery";
 import Spinner from "../../components/Spinner/Spinner";
 import MovieList from "../../components/MovieList/MovieList";
 import "./forYou.styles.scss";
+import { Link } from "react-router-dom";
 
 function getRandomSlice(data) {
   const max = data.length;
@@ -27,7 +28,10 @@ const ForYou = () => {
 
   return (
     <div id="for-you">
-      <h1 className="heading"> For {user?.name} </h1>
+      <h1 className="heading">
+        {" "}
+        For <Link to={"/profile"}> {user?.name} </Link>{" "}
+      </h1>
       <div className="for-you-wrapper">
         {preferenceData && <MovieList data={preferenceData} />}
       </div>

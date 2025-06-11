@@ -32,6 +32,11 @@ form {
 
 .heading {
   margin-bottom: 1rem;
+  span,
+  a {
+    color: red;
+    text-transform: capitalize;
+  }
   &.error {
     color: red;
     font-size: 1rem;
@@ -83,7 +88,7 @@ button {
 
 .container {
   width: 1200px;
-  max-width: 90%;
+  max-width: 99%;
   margin: 0 auto;
 }
 

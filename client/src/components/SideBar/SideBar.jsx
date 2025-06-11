@@ -50,8 +50,8 @@ const SideBar = () => {
             Popluar Movies
           </Link>
 
-          <Link to="/" className="nav-link" onClick={handleToggle}>
-            What to Watch
+          <Link to="/actors" className="nav-link" onClick={handleToggle}>
+            Popular Actors
           </Link>
           <Link to="/" className="nav-link" onClick={handleToggle}>
             Top 100 Movies
