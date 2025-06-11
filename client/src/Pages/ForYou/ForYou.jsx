@@ -1,4 +1,5 @@
 import usePreferenceQuery from "../../hooks/usePreferencesQuery";
+import { useSelector } from "react-redux";
 import useActorsQuery from "../../hooks/useActorsQuery";
 import Spinner from "../../components/Spinner/Spinner";
 import MovieList from "../../components/MovieList/MovieList";
@@ -16,6 +17,7 @@ function getRandomSlice(data) {
 }
 
 const ForYou = () => {
+  const { user } = useSelector((state) => state.auth);
   const { data: actorsData } = useActorsQuery();
   const { data: preferenceData = [], isLoading } = usePreferenceQuery({
     actors: actorsData ? getRandomSlice(actorsData) : [],
@@ -25,7 +27,7 @@ const ForYou = () => {
 
   return (
     <div id="for-you">
-      <h2>For you</h2>
+      <h1 className="heading"> For {user?.name} </h1>
       <div className="for-you-wrapper">
         {preferenceData && <MovieList data={preferenceData} />}
       </div>
