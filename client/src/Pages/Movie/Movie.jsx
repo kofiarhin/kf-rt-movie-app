@@ -27,7 +27,6 @@ const Movie = () => {
   }
 
   const handleSave = async () => {
-    console.log("add to play list");
     mutate({
       userId: user._id,
       movieId: movieData.movie.id,
@@ -75,7 +74,9 @@ const Movie = () => {
 
       {movieData.trailerKey && <Trailer trailerKey={movieData.trailerKey} />}
 
-      {user && playListData && renderButton(playListData, movieId)}
+      <div className="cta-wrapper">
+        {user && playListData && renderButton(playListData, movieId)}
+      </div>
 
       <div className="movie-details">
         <p>{movieData.movie.overview}</p>
