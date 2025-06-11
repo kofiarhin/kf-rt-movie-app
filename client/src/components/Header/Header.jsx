@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useState } from "react";
 import "./header.styles.scss";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import useSearchQuery from "../../hooks/useSearchQuery";
 import SearchForm from "../SearchForm/SearchForm";
 import useAuth from "../../hooks/useAuth";
 import { FaBars, FaTimes } from "react-icons/fa";
+import SideBar from "../SideBar/SideBar";
+import { toggleSideNav } from "../../redux/navigation/navigationSlice";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector((state) => state.navigation);
 
   const { user } = useSelector((state) => state.auth);
   const { logout } = useAuth();
@@ -17,51 +20,54 @@ const Header = () => {
     logout();
   };
 
-  const toggleSideNav = () => {
-    setIsOpen((prev) => !prev);
-  };
-
   return (
-    <header id="header">
-      <div className="container">
-        <div className="header-left">
-          <Link to="/" className="logo">
-            <h1>Kflix</h1>
-          </Link>
-          <FaBars className="menu" color="white" onClick={toggleSideNav} />
+    <>
+      <SideBar />
+      <header id="header">
+        <div className="container">
+          <div className="header-left">
+            <Link to="/" className="logo">
+              <h1>Kflix</h1>
+            </Link>
+            <FaBars
+              className="menu"
+              color="white"
+              onClick={() => dispatch(toggleSideNav())}
+            />
+          </div>
+
+          <SearchForm className="search" />
+
+          <div className={`header-right ${isOpen ? "active" : ""}`}>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+            {user ? (
+              <>
+                <Link to="/for_you" className="nav-link">
+                  For You
+                </Link>
+
+                <Link to="/play_list" className="nav-link">
+                  Playlist
+                </Link>
+
+                <button onClick={handleLogout}>Logout</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="nav-link">
+                  Login
+                </Link>
+                <Link to="/register" className="nav-link">
+                  Register
+                </Link>
+              </>
+            )}
+          </div>
         </div>
-
-        <SearchForm className="search" />
-
-        <div className={`header-right ${isOpen ? "active" : ""}`}>
-          <Link to="/" className="nav-link">
-            Home
-          </Link>
-          {user ? (
-            <>
-              <Link to="/for_you" className="nav-link">
-                For You
-              </Link>
-
-              <Link to="/play_list" className="nav-link">
-                Playlist
-              </Link>
-
-              <button onClick={handleLogout}>Logout</button>
-            </>
-          ) : (
-            <>
-              <Link to="/login" className="nav-link">
-                Login
-              </Link>
-              <Link to="/register" className="nav-link">
-                Register
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 
