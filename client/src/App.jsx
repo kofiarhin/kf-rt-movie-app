@@ -37,7 +37,7 @@ const App = () => {
           <Route path="/top_movies" element={<TopMovies />} />
           <Route path="/popular_movies" element={<PopularMovies />} />
           <Route path="/actors" element={<Actors />} />
-          <Route path="/actors/:id" element={<Actor />} />
+          <Route path="/actors/:query" element={<Actor />} />
 
           {/* private routes */}
           <Route element={<PrivateRoute />}>
