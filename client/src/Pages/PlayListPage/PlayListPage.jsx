@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import usePlayListQuery from "../../hooks/usePlayListQuery";
 import Spinner from "../../components/Spinner/Spinner";
 import PlayList from "../../components/PlyaList/PlayList";
-import "./playListPage.styles.scss";
+import "./play_list_page.styles.scss";
 
 const PlayListPage = () => {
   const { user } = useSelector((state) => state.auth);
