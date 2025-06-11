@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import usePlayListQuery from "../../hooks/usePlayListQuery";
 import Spinner from "../../components/Spinner/Spinner";
 import PlayList from "../../components/PlyaList/PlayList";
+import "./playListPage.styles.scss";
 
 const PlayListPage = () => {
   const { user } = useSelector((state) => state.auth);
@@ -11,8 +12,8 @@ const PlayListPage = () => {
     return <Spinner />;
   }
   return (
-    <div id="dashboard">
-      <h1 className="heading"> Your play list</h1>
+    <div id="playlist">
+      <h2 className="heading"> Your play list</h2>
 
       <PlayList data={data} />
     </div>

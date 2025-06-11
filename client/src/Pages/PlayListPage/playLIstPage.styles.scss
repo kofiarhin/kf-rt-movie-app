@@ -1,19 +1,6 @@
-#dashboard {
-  padding-top: 2rem;
-  min-height: 80vh;
-  h1 {
-    text-align: center;
-    span {
-      text-transform: capitalize;
-      color: red;
-    }
-  }
-}
-
-@media (max-width: 800px) {
-  #dashboard {
-    h1 {
-      font-size: 1.2rem; 
-    }
+#playlist {
+  padding: 1rem;
+  h2 {
+    margin-bottom: 2rem;
   }
 }
