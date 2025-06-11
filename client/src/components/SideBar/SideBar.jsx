@@ -39,8 +39,8 @@ const SideBar = () => {
           )}
         </div>
         <div className="menu-unit">
-          <Link to="/" className="nav-link" onClick={handleToggle}>
-            Trending Movies
+          <Link to="/top_movies" className="nav-link" onClick={handleToggle}>
+            Top Movies
           </Link>
           <Link to="/" className="nav-link" onClick={handleToggle}>
             Popluar Movies

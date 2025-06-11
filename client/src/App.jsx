@@ -15,6 +15,7 @@ import usePlayListQuery from "./hooks/usePlayListQuery";
 import PlayListPage from "./Pages/PlayListPage/PlayListPage";
 import Profile from "./Pages/Profile/Profile";
 import ForYou from "./Pages/ForYou/ForYou";
+import TopMovies from "./Pages/TopMovies/TopMovies";
 
 // app
 const App = () => {
@@ -30,6 +31,9 @@ const App = () => {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/playground" element={<Playground />} />
           <Route path="/character_movies" element={<CharacterMovies />} />
+          <Route path="/top_movies" element={<TopMovies />} />
+
+          {/* private routes */}
           <Route element={<PrivateRoute />}>
             <Route path="/play_list" element={<PlayListPage />} />
             <Route path="/profile" element={<Profile />} />
