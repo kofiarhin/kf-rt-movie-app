@@ -42,7 +42,11 @@ const SideBar = () => {
           <Link to="/top_movies" className="nav-link" onClick={handleToggle}>
             Top Movies
           </Link>
-          <Link to="/" className="nav-link" onClick={handleToggle}>
+          <Link
+            to="/popular_movies"
+            className="nav-link"
+            onClick={handleToggle}
+          >
             Popluar Movies
           </Link>
 

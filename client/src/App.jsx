@@ -16,6 +16,7 @@ import PlayListPage from "./Pages/PlayListPage/PlayListPage";
 import Profile from "./Pages/Profile/Profile";
 import ForYou from "./Pages/ForYou/ForYou";
 import TopMovies from "./Pages/TopMovies/TopMovies";
+import PopularMovies from "./Pages/PopularMovies/PopularMovies";
 
 // app
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/playground" element={<Playground />} />
           <Route path="/character_movies" element={<CharacterMovies />} />
           <Route path="/top_movies" element={<TopMovies />} />
+          <Route path="/popular_movies" element={<PopularMovies />} />
 
           {/* private routes */}
           <Route element={<PrivateRoute />}>
