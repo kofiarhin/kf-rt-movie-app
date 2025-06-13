@@ -35,7 +35,14 @@ const SideBar = () => {
               </Link>
             </>
           ) : (
-            <></>
+            <>
+              <Link to="/login" className="nav-link" onClick={handleToggle}>
+                Login
+              </Link>
+              <Link to="/register" className="nav-link" onClick={handleToggle}>
+                Register
+              </Link>
+            </>
           )}
         </div>
         <div className="menu-unit">

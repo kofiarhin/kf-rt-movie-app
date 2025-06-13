@@ -77,12 +77,6 @@ const Movie = () => {
       <div className="cta-wrapper">
         {user && playListData && renderButton(playListData, movieId)}
       </div>
-      <section id="quic">
-        <Link to={`/quiz/${movieData.movie.original_title}`}>
-          {" "}
-          <h2>Take a quiz</h2>{" "}
-        </Link>
-      </section>
 
       <div className="movie-details">
         <p>{movieData.movie.overview}</p>
@@ -94,6 +88,13 @@ const Movie = () => {
           <Cast data={movieData.cast.cast} />
         </div>
       )}
+
+      <section id="quic">
+        <Link to={`/quiz/${movieData.movie.original_title}`}>
+          {" "}
+          <h2>Take a quiz</h2>{" "}
+        </Link>
+      </section>
 
       {movieData.recommended?.length > 1 && (
         <div>

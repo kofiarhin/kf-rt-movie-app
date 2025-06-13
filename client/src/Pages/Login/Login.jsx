@@ -1,10 +1,15 @@
 import { useState } from "react";
 import useLoginmutation from "../../hooks/useLoginMutation";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Login = () => {
   const [email, setEmail] = useState("kofiarhin5@gmail.com");
   const [password, setPassword] = useState("password");
   const { mutate, isLoading, isSuccess } = useLoginmutation();
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
