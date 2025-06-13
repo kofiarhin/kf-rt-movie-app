@@ -4,6 +4,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import MovieList from "../../components/MovieList/MovieList";
 import useGenres from "../../hooks/useGenres";
 import "./home.styles.scss";
+import MovieCarousel from "../../components/MovieCarousel/MovieCarousel";
 
 // home
 const Home = () => {
@@ -27,6 +28,7 @@ const Home = () => {
   return (
     <div id="home">
       {/* filter */}
+      <MovieCarousel movies={data} />
       <select
         name="genre"
         id="genre"
