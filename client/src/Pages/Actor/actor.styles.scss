@@ -1,4 +1,36 @@
 #actor {
   padding-top: 2rem;
   min-height: 70vh;
+  img {
+    width: 300px;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    margin-bottom: 1rem;
+  }
+  h2 {
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 960px) {
+  #actor {
+    .actor-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      img {
+        width: 100%;
+      }
+      > div {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
 }

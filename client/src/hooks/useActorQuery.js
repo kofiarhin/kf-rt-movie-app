@@ -16,8 +16,7 @@ const getActor = async (id) => {
       throw new Error("there was a problem fetching data from api");
     }
     const data = await res.json();
-    console.log("xxxx", data);
-    return data.results;
+    return data.results[0];
   } catch (error) {
     throw new Error(error.message);
   }
