@@ -1,52 +1,30 @@
 .movie-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  img {
-    width: 100%;
-    display: block;
-    margin-bottom: 1rem;
-    flex: 1;
-  }
   .movie-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    h3,
     p {
-      margin-bottom: 1rem;
-    }
-    a {
-      background-color: red;
-      color: white;
-      padding: 0.5rem 1rem;
-      transition: all ease-in-out 300ms;
-      display: block;
-      width: 80px;
-      &:hover {
-        background-color: white;
-        color: red;
-      }
+      display: none;
     }
   }
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 800px) {
   .movie-list {
     grid-template-columns: repeat(3, 1fr);
+    .movie-item {
+      h3,
+      p {
+        display: block;
+        margin-bottom: 1rem;
+      }
+    }
   }
 }
 
-@media (max-width: 800px) {
+@media (min-width: 1200px) {
   .movie-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    .movie-item {
-      h3 {
-        display: none;
-      }
-      p {
-        display: none;
-      }
-    }
+    grid-template-columns: repeat(4, 1fr);
   }
 }

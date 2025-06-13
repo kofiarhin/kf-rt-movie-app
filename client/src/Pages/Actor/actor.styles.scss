@@ -1,10 +1,10 @@
 #actor {
   padding-top: 2rem;
   min-height: 70vh;
-  img {
-    width: 300px;
-    display: block;
-    margin-bottom: 1rem;
+  .image-wrapper {
+    img {
+      width: 200px;
+    }
   }
   h1 {
     margin-bottom: 1rem;
@@ -13,7 +13,7 @@
     margin-bottom: 1rem;
   }
   p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
   }
 }
