@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiKey } from "../config/lib";
 
-const getActors = async () => {
+const getActors = async (pageNumber = 1) => {
   try {
-    const url = `https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&language=en-US&page=1
+    const url = `https://api.themoviedb.org/3/person/popular?api_key=${apiKey}&language=en-US&page=${pageNumber}
 `;
     const res = await fetch(url);
 
@@ -18,10 +18,13 @@ const getActors = async () => {
   }
 };
 
-const useActors = () => {
+// use actors
+const useActors = (pageNumber = 1) => {
+  console.log("xxx", pageNumber);
   return useQuery({
-    queryKey: ["actors"],
-    queryFn: getActors,
+    queryKey: ["actors", pageNumber],
+    queryFn: () => getActors(pageNumber),
+    enabled: !!pageNumber,
   });
 };
 
