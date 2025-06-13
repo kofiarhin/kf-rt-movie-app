@@ -18,6 +18,7 @@ import Profile from "./Pages/Profile/Profile";
 import ForYou from "./Pages/ForYou/ForYou";
 import TopMovies from "./Pages/TopMovies/TopMovies";
 import PopularMovies from "./Pages/PopularMovies/PopularMovies";
+import QuizPage from "./Pages/QuzPage.jsx/QuizPage";
 import Actors from "./Pages/Actors/Actors";
 import Actor from "./Pages/Actor/Actor";
 
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/popular_movies" element={<PopularMovies />} />
           <Route path="/actors" element={<Actors />} />
           <Route path="/actors/:query" element={<Actor />} />
+          <Route path="/quiz/:movie" element={<QuizPage />} />
 
           {/* private routes */}
           <Route element={<PrivateRoute />}>

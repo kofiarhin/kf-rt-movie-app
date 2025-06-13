@@ -44,14 +44,6 @@ const Header = () => {
             </Link>
             {user ? (
               <>
-                <Link to="/for_you" className="nav-link">
-                  For You
-                </Link>
-
-                <Link to="/play_list" className="nav-link">
-                  Playlist
-                </Link>
-
                 <button onClick={handleLogout}>Logout</button>
               </>
             ) : (

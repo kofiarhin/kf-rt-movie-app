@@ -9,6 +9,7 @@ import "./movie.styles.scss";
 import MovieList from "../../components/MovieList/MovieList";
 import usePlayListMutation from "../../hooks/usePlayListMutation";
 import useRemovePlayListMutation from "../../hooks/useRemovePlayListMutation";
+import { Link } from "react-router-dom";
 
 const Movie = () => {
   const { id: movieId } = useParams();
@@ -48,7 +49,6 @@ const Movie = () => {
       userId,
     };
     removeMutate(data);
-    console.log("remove item from playlist");
   };
 
   const renderButton = (data, id) => {
@@ -77,6 +77,12 @@ const Movie = () => {
       <div className="cta-wrapper">
         {user && playListData && renderButton(playListData, movieId)}
       </div>
+      <section id="quic">
+        <Link to={`/quiz/${movieData.movie.original_title}`}>
+          {" "}
+          <h2>Take a quiz</h2>{" "}
+        </Link>
+      </section>
 
       <div className="movie-details">
         <p>{movieData.movie.overview}</p>
