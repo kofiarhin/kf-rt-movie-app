@@ -23,7 +23,7 @@ const Actor = () => {
           <ActorImage url={data.profile_path} />
         </div>
         <div className="details-wrapper">
-          <h1 className="heading">Actorid: {query} </h1>
+          <h1 className="heading">{query} </h1>
           <p> {movieAiData?.message} </p>
         </div>
       </div>

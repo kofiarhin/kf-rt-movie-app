@@ -30,7 +30,7 @@ const SideBar = () => {
                 For You
               </Link>
 
-              <Link to="/playlist" className="nav-link" onClick={handleToggle}>
+              <Link to="/play_list" className="nav-link" onClick={handleToggle}>
                 Playlist
               </Link>
             </>
