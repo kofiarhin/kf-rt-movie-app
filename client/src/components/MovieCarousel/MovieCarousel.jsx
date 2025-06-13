@@ -19,7 +19,7 @@ const MovieCarousel = ({ movies, interval = 4000 }) => {
   const movie = movies[current];
 
   return (
-    <div className="movie-carousel">
+    <div className="carousel">
       <div className="image-wrapper">
         <div className="overlay">ipsum!</div>
         <img
