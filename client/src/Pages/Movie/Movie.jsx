@@ -83,7 +83,7 @@ const Movie = () => {
       </div>
 
       {movieData.cast?.cast?.length > 0 && (
-        <div>
+        <div className="movie-cast-wrapper">
           <h2>Cast</h2>
           <Cast data={movieData.cast.cast} />
         </div>
