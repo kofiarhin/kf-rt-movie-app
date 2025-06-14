@@ -4,6 +4,7 @@ import { toggleSideNav } from "../../redux/navigation/navigationSlice";
 import { useSelector } from "react-redux";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import SearchForm from "../SearchForm/SearchForm";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ const SideBar = () => {
         </Link>
 
         <FaTimes onClick={handleToggle} className="close" />
+      </div>
+      <div className="search-wrapper">
+        <SearchForm />
       </div>
       <div className="menu-wrapper">
         <div className="menu-unit">

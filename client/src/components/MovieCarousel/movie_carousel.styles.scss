@@ -6,6 +6,10 @@
   }
   .info-wrapper {
     display: flex;
+    a {
+      color: red;
+      font-weight: 800;
+    }
     img {
       display: block;
       width: 100px;

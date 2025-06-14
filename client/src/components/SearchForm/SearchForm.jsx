@@ -4,8 +4,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { reset as pageReset } from "../../redux/Pages/pageSlice";
 import { setSearch } from "../../redux/search/searchSlice";
+import { toggleSideNav } from "../../redux/navigation/navigationSlice";
+
 // search form
 const SearchForm = () => {
+  const { isOpen } = useSelector((state) => state.navigation);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,7 +23,11 @@ const SearchForm = () => {
     if (!query) return;
     dispatch(setSearch(query));
     dispatch(pageReset());
+    if (isOpen) {
+      dispatch(toggleSideNav());
+    }
     navigate(`/search?query=${query}`);
+
     setQuery("");
     // dispatch(reset());
     // navigate(`/search/${query}/1`);

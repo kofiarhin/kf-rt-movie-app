@@ -42,7 +42,11 @@ const MovieCarousel = ({ movies, interval = 4000 }) => {
             <h2>{movie.title}</h2>
           </Link>
           <p>{movie.release_date}</p>
-          <p> {movie.overview.substring(0, 200)}... </p>
+          <p>
+            {" "}
+            {movie.overview.substring(0, 150)}..
+            <Link to={`/movies/${movie.id}`}>Read more</Link>{" "}
+          </p>
         </div>
       </div>
     </div>
