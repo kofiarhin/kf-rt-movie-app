@@ -9,7 +9,6 @@ const MovieCarousel = ({ movies, interval = 4000 }) => {
 
   useEffect(() => {
     const id = setInterval(() => {
-      console.log(current);
       setCurrent((prev) => (prev + 1) % movies.length);
     }, interval);
     return () => clearInterval(id);

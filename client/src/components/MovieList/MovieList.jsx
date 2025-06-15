@@ -3,7 +3,6 @@ import "./movieList.styles.scss";
 import { Link } from "react-router-dom";
 
 const MovieList = ({ data }) => {
-  console.log(data[0]);
   if (!Array.isArray(data) || data.length === 0) {
     return <div>No movies found.</div>;
   }

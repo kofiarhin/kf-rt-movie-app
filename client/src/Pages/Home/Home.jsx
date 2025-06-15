@@ -5,6 +5,7 @@ import MovieList from "../../components/MovieList/MovieList";
 import useGenres from "../../hooks/useGenres";
 import "./home.styles.scss";
 import MovieCarousel from "../../components/MovieCarousel/MovieCarousel";
+import LinearMovieList from "../../components/LinearMovieList/LinearMovieList";
 
 // home
 const Home = () => {
@@ -12,6 +13,8 @@ const Home = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const { data, isLoading, error } = useMovies(pageNumber, selectedGenre);
   const { data: genreData } = useGenres();
+
+  console.log("xxxxx", data);
 
   if (isLoading) {
     return <Spinner />;
@@ -27,8 +30,11 @@ const Home = () => {
 
   return (
     <div id="home">
+      {/* linear movie list */}
       {/* filter */}
       <MovieCarousel movies={data} />
+      <h2>Popular Movies</h2>
+      <LinearMovieList movies={data} />
       <select
         name="genre"
         id="genre"
