@@ -1,88 +1,52 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_TMDB_URL = "https://api.themoviedb.org/3";
+
+// Base fetch wrapper for TMDB
+const fetchFromTMDB = async (endpoint) => {
+  try {
+    const res = await fetch(`${BASE_TMDB_URL}${endpoint}&api_key=${API_KEY}&language=en-US&page=1`);
+    if (!res.ok) throw new Error(`TMDB fetch failed: ${res.status}`);
+    const data = await res.json();
+    return data;
+  } catch {
+    return null;
+  }
+};
 
 // Get users from custom backend
 export const getUsers = async () => {
   try {
-    const BASE_URL = "https://kf-ai-server.onrender.com";
-    const res = await fetch(BASE_URL);
-
-    if (!res.ok) {
-      throw new Error(`Request failed with status ${res.status}`);
-    }
-
+    const res = await fetch("https://kf-ai-server.onrender.com");
+    if (!res.ok) throw new Error(`Backend fetch failed: ${res.status}`);
     return await res.json();
-  } catch (error) {
+  } catch {
     return [];
   }
 };
 
-// Fetch popular movies from TMDB
+// Fetch popular movies
 export const fetchPopularMovies = async () => {
-  try {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-    );
-
-    if (!res.ok) {
-      throw new Error(`TMDB popular movies failed: ${res.status}`);
-    }
-
-    const data = await res.json();
-    return data.results;
-  } catch {
-    return [];
-  }
+  const data = await fetchFromTMDB("/movie/popular?");
+  return data?.results || [];
 };
 
-// Fetch now playing movies from TMDB
+// Fetch now playing movies
 export const fetchNowPlayingMovies = async () => {
-  try {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`
-    );
-
-    if (!res.ok) {
-      throw new Error(`TMDB now playing failed: ${res.status}`);
-    }
-
-    const data = await res.json();
-    return data.results;
-  } catch {
-    return [];
-  }
+  const data = await fetchFromTMDB("/movie/now_playing?");
+  return data?.results || [];
 };
 
-// Fetch popular series from TMDB
+// Fetch popular TV series
 export const fetchPopularSeries = async () => {
-  try {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1`
-    );
-
-    if (!res.ok) {
-      throw new Error(`TMDB popular series failed: ${res.status}`);
-    }
-
-    const data = await res.json();
-    return data.results;
-  } catch {
-    return [];
-  }
+  const data = await fetchFromTMDB("/tv/popular?");
+  return data?.results || [];
 };
 
-// Fetch a specific series by ID
+// Fetch specific TV series by ID
 export const fetchSeriesById = async (seriesId) => {
   try {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/tv/${seriesId}?api_key=${API_KEY}&language=en-US`
-    );
-
-    if (!res.ok) {
-      throw new Error(
-        `Failed to fetch series with ID ${seriesId}: ${res.status}`
-      );
-    }
-
+    const res = await fetch(`${BASE_TMDB_URL}/tv/${seriesId}?api_key=${API_KEY}&language=en-US`);
+    if (!res.ok) throw new Error(`Failed to fetch series ID ${seriesId}: ${res.status}`);
     return await res.json();
   } catch {
     return null;
@@ -91,39 +55,16 @@ export const fetchSeriesById = async (seriesId) => {
 
 // Fetch related/similar series
 export const fetchRelatedSeries = async (seriesId) => {
-  try {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/tv/${seriesId}/similar?api_key=${API_KEY}&language=en-US&page=1`
-    );
-
-    if (!res.ok) {
-      throw new Error(
-        `Failed to fetch related series for ID ${seriesId}: ${res.status}`
-      );
-    }
-
-    const data = await res.json();
-    return data.results;
-  } catch {
-    return [];
-  }
+  const data = await fetchFromTMDB(`/tv/${seriesId}/similar?`);
+  return data?.results || [];
 };
 
-// Search for TV series by query
+// Search TV series
 export const searchSeries = async (query) => {
   if (!query) return [];
-
   try {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(
-        query
-      )}&page=1`
-    );
-
-    if (!res.ok) {
-      throw new Error(`Failed to search series: ${res.status}`);
-    }
-
+    const res = await fetch(`${BASE_TMDB_URL}/search/tv?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(query)}&page=1`);
+    if (!res.ok) throw new Error(`Search failed: ${res.status}`);
     const data = await res.json();
     return data.results;
   } catch {
@@ -131,40 +72,14 @@ export const searchSeries = async (query) => {
   }
 };
 
-// Fetch series genres
+// Fetch TV series genres
 export const fetchSeriesGenres = async () => {
-  try {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/genre/tv/list?api_key=${API_KEY}&language=en-US`
-    );
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch series genres: ${res.status}`);
-    }
-
-    const data = await res.json();
-    return data.genres; // array of { id, name }
-  } catch {
-    return [];
-  }
+  const data = await fetchFromTMDB("/genre/tv/list?");
+  return data?.genres || [];
 };
 
 // Fetch series by genre ID
 export const fetchSeriesByGenre = async (genreId) => {
-  try {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=${genreId}&language=en-US&sort_by=popularity.desc&page=1`
-    );
-
-    if (!res.ok) {
-      throw new Error(
-        `Failed to fetch series for genre ID ${genreId}: ${res.status}`
-      );
-    }
-
-    const data = await res.json();
-    return data.results;
-  } catch {
-    return [];
-  }
+  const data = await fetchFromTMDB(`/discover/tv?with_genres=${genreId}&sort_by=popularity.desc`);
+  return data?.results || [];
 };
