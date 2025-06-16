@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import { FaBars, FaTimes } from "react-icons/fa";
 import SideBar from "../SideBar/SideBar";
 import { toggleSideNav } from "../../redux/navigation/navigationSlice";
+import { FaSearch } from "react-icons/fa";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ const Header = () => {
           </div>
 
           <div className={`header-right ${isOpen ? "active" : ""}`}>
+            <Link to="/search" className="search-icon">
+              <FaSearch />
+            </Link>
             <Link to="/" className="nav-link">
               Home
             </Link>
