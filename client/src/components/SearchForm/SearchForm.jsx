@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { reset as pageReset } from "../../redux/Pages/pageSlice";
 import { setSearch } from "../../redux/search/searchSlice";
 import { toggleSideNav } from "../../redux/navigation/navigationSlice";
+import { FaSearch } from "react-icons/fa";
 
 // search form
 const SearchForm = () => {
