@@ -6,12 +6,7 @@ const Landing = ({ url }) => {
 
   return (
     <div id="landing">
-      <div
-        className="overlay"
-        style={{
-          backgroundImage: `url(${bgUrl})`,
-        }}
-      >
+      <div className="overlay">
         <h1>Welcome</h1>
         <h2>
           Millions of movies, TV shows and people to discover. Explore now.

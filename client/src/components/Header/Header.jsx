@@ -36,10 +36,12 @@ const Header = () => {
             />
           </div>
 
-
           <div className={`header-right ${isOpen ? "active" : ""}`}>
             <Link to="/" className="nav-link">
               Home
+            </Link>
+            <Link to="/movies" className="nav-link">
+              Movies
             </Link>
             {user ? (
               <>

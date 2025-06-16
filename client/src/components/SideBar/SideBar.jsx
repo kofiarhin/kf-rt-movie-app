@@ -50,9 +50,6 @@ const SideBar = () => {
           )}
         </div>
         <div className="menu-unit">
-          <Link to="/top_movies" className="nav-link" onClick={handleToggle}>
-            Top Movies
-          </Link>
           <Link
             to="/popular_movies"
             className="nav-link"
@@ -66,9 +63,6 @@ const SideBar = () => {
           </Link>
           <Link to="/" className="nav-link" onClick={handleToggle}>
             Top 100 Movies
-          </Link>
-          <Link to="/" className="nav-link" onClick={handleToggle}>
-            Quiz
           </Link>
         </div>
       </div>

@@ -1,9 +1,10 @@
+import "./searchPage.styles.scss";
 import { useLocation } from "react-router-dom";
 import useSearchQuery from "../../hooks/useSearchQuery";
 import MovieList from "../../components/MovieList/MovieList";
 import Spinner from "../../components/Spinner/Spinner";
 import { useState } from "react";
-import "./searchPage.styles.scss";
+import SearchForm from "../../components/SearchForm/SearchForm";
 
 // search page
 const SearchPage = () => {
@@ -21,6 +22,7 @@ const SearchPage = () => {
 
   return (
     <div className="search">
+      <SearchForm />
       <h1 className="heading">
         {" "}
         You are searching <span>{query}</span>{" "}

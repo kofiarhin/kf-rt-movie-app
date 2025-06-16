@@ -1,5 +1,16 @@
 .search {
   padding: 2rem 0rem;
+  form {
+    margin-bottom: 1rem;
+    input {
+      width: 100%;
+      padding: 0.8rem 0rem;
+      text-indent: 20px;
+    }
+    button {
+      display: none;
+    }
+  }
   h1 {
     span {
       color: red;
