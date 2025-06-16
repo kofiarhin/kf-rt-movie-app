@@ -14,3 +14,5 @@ export const formatMinutesToHours = (minutes) => {
 
   return [hrLabel, minLabel].filter(Boolean).join(" ");
 };
+
+export const getRandomInt = () => Math.floor(Math.random() * 10);

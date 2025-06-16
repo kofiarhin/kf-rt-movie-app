@@ -1,0 +1,45 @@
+#landing {
+  min-height: 50vh;
+  position: relative;
+  margin-bottom: 2rem;
+  .overlay {
+    position: absolute;
+    padding: 2rem 0rem;
+    display: grid;
+    place-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95),
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0)
+    );
+  }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    margin-bottom: 2rem;
+  }
+  .search-form {
+    display: flex;
+    input {
+      background-color: black;
+      outline: none;
+      border: none;
+      padding: 1rem 0rem;
+      text-indent: 20px;
+      flex: 1;
+    }
+    button {
+      background-color: red;
+      width: 100px;
+      margin: 0;
+    }
+  }
+}

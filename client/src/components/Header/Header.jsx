@@ -36,7 +36,6 @@ const Header = () => {
             />
           </div>
 
-          <SearchForm className="search" />
 
           <div className={`header-right ${isOpen ? "active" : ""}`}>
             <Link to="/" className="nav-link">
