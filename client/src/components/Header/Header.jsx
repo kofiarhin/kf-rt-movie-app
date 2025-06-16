@@ -47,6 +47,10 @@ const Header = () => {
             <Link to="/movies" className="nav-link">
               Movies
             </Link>
+
+            <Link to="/quiz" className="nav-link">
+              Quiz
+            </Link>
             {user ? (
               <>
                 <button onClick={handleLogout}>Logout</button>
