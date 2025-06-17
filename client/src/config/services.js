@@ -83,3 +83,20 @@ export const fetchSeriesByGenre = async (genreId) => {
   );
   return data?.results || [];
 };
+
+// Search for actors (partial name match)
+export const searchActor = async (query) => {
+  if (!query) return [];
+  try {
+    const res = await fetch(
+      `${BASE_TMDB_URL}/search/person?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(
+        query
+      )}&page=1`
+    );
+    if (!res.ok) throw new Error(`Actor search failed: ${res.status}`);
+    const data = await res.json();
+    return data.results;
+  } catch {
+    return [];
+  }
+};

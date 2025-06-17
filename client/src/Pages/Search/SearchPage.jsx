@@ -22,20 +22,21 @@ const SearchPage = () => {
 
   return (
     <div id="search">
-      <SearchForm />
       {query ? (
         <>
           <h1 className="heading">
             {" "}
             You are searching <span>{query}</span>{" "}
           </h1>
+          <SearchForm />
 
           {data && <MovieList data={data} />}
           <button onClick={handlePageNumber}>Load More</button>
         </>
       ) : (
         <>
-          <h1>Search for Movies....</h1>
+          <h1 className="heading">Start movies search....</h1>
+          <SearchForm />
         </>
       )}
     </div>
