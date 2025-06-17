@@ -1,7 +1,9 @@
+import "./quiz_component.styles.scss";
 import { useState } from "react";
-import "./quiz_component.styles.scss"; // SCSS import
+import { useNavigate } from "react-router-dom";
 
 const QuizComponent = ({ questions }) => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -28,6 +30,9 @@ const QuizComponent = ({ questions }) => {
     }
   };
 
+  const handleRestart = () => {
+    navigate("/quiz");
+  };
   if (!questions || questions.length === 0)
     return <div className="quiz-container">No questions available.</div>;
 
@@ -38,6 +43,9 @@ const QuizComponent = ({ questions }) => {
         <p className="quiz-score">
           Your score: {score} / {questions.length}
         </p>
+        <div className="quiz-restart-wrapper">
+          <button onClick={handleRestart}>Restart</button>
+        </div>
       </div>
     );
   }

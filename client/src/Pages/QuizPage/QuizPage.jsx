@@ -9,8 +9,6 @@ const QuizPage = () => {
   const [movieTitle, setMovieTitle] = useState(null);
   const { data, isLoading } = useMovies();
 
-  console.log(movieTitle);
-
   if (isLoading) {
     return <Spinner />;
   }

@@ -73,6 +73,15 @@
   }
 }
 
+.quiz-restart-wrapper {
+  text-align: center;
+  margin: 1rem 0rem;
+  button {
+    padding: 0.8rem 2rem;
+    background-color: red;
+  }
+}
+
 /* === Responsive Overrides === */
 @media (min-width: 480px) {
   .quiz-container {

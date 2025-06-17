@@ -12,7 +12,6 @@ const Quiz = () => {
     return <Spinner />;
   }
 
-  console.log("xxxxx", quizData);
   return (
     <div id="quiz">
       <h1 className="heading center">TQuiz on {movie} </h1>
