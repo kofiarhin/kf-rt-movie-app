@@ -1,4 +1,13 @@
 #actors {
-  min-height: 70vh;
+  min-height: 80vh;
   padding-top: 1rem;
+  .form-wrapper {
+    margin-bottom: 2rem;
+    input {
+      display: block;
+      width: 100%;
+      text-indent: 20px;
+      padding: 0.8rem 0rem;
+    }
+  }
 }

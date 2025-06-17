@@ -20,7 +20,6 @@ const getActors = async (pageNumber = 1) => {
 
 // use actors
 const useActors = (pageNumber = 1) => {
-  console.log("xxx", pageNumber);
   return useQuery({
     queryKey: ["actors", pageNumber],
     queryFn: () => getActors(pageNumber),
