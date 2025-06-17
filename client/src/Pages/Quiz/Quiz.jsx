@@ -14,7 +14,7 @@ const Quiz = () => {
 
   return (
     <div id="quiz">
-      <h1 className="heading center">TQuiz on {movie} </h1>
+      <h1 className="heading center">{movie}</h1>
       {quizData && <QuizComponent questions={quizData} />}
     </div>
   );
