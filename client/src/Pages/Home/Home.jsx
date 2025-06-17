@@ -6,6 +6,7 @@ import LinearMovieList from "../../components/LinearMovieList/LinearMovieList";
 import Landing from "../../components/Landing/Landing";
 import { getRandomInt } from "../../config/lib";
 import useNowPlaying from "../../hooks/useNowPlaying";
+import useDiscovered from "../../hooks/useDiscovered";
 
 // home
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const { data, isLoading, error } = useMovies(pageNumber, selectedGenre);
   const { data: nowPlayingData } = useNowPlaying();
+  const { data: discoveredData } = useDiscovered();
 
   if (isLoading) {
     return <Spinner />;
@@ -27,7 +29,9 @@ const Home = () => {
 
       {/* now playing */}
       <LinearMovieList title="Now Playing" movies={nowPlayingData} />
-      <LinearMovieList title="Now Showing" movies={data} />
+
+      {/* up coming movies */}
+      <LinearMovieList title="Up Coming Movies" movies={discoveredData} />
     </div>
   );
 };

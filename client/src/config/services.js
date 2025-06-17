@@ -100,3 +100,25 @@ export const searchActor = async (query) => {
     return [];
   }
 };
+
+export const fetchTopRatedMoviesByYear = async (year = 2025) => {
+  const data = await fetchFromTMDB(
+    `/discover/movie?primary_release_year=${year}&sort_by=vote_average.desc&vote_count.gte=50`
+  );
+  return data?.results || [];
+};
+
+export const fetchDefaultDiscoveredMovies = async () => {
+  const data = await fetchFromTMDB(`/discover/movie?sort_by=popularity.desc`);
+  return data?.results || [];
+};
+
+export const fetchTrendingMovies = async (timeWindow = "day") => {
+  const data = await fetchFromTMDB(`/trending/movie/${timeWindow}?`);
+  return data?.results || [];
+};
+
+export const fetchUpcomingMovies = async () => {
+  const data = await fetchFromTMDB(`/movie/upcoming?`);
+  return data?.results || [];
+};

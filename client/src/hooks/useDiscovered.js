@@ -1,11 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
+import { fetchUpcomingMovies } from "../config/services";
+
 const useDiscovered = () => {
-  return { data: "get discovered data" };
+  return useQuery({
+    queryKey: ["discovered"],
+    queryFn: () => fetchUpcomingMovies(),
+  });
 };
 
 export default useDiscovered;
-
-// import { apiKey} from "../config/lib"
-// const year = 2023;
-// const pageNumber = 1;
-
-// const discoverUrl = `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&first_air_date_year=${year}&page=${pageNumber}`;

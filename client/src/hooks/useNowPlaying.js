@@ -3,7 +3,7 @@ import { fetchNowPlayingMovies } from "../config/services";
 
 const useNowPlaying = () => {
   return useQuery({
-    queryKey: ["movies"],
+    queryKey: ["now playing"],
     queryFn: fetchNowPlayingMovies,
   });
 };
