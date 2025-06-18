@@ -1,7 +1,7 @@
-import { createUser } from "../utils/helper.js";
-import User from "../models/userModel.js";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+const { createUser } = require("../utils/helper");
+const User = require("../models/userModel");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 // register user
 const registerUser = async (req, res, next) => {
@@ -11,16 +11,18 @@ const registerUser = async (req, res, next) => {
       return res.status(400).json({ error: "please fill out all fields" });
     }
 
-    // check if user already exist
+    // check if user already exists
     const check = await User.findOne({ email });
     if (check) {
-      return res.status(400).json({ error: "user alraedy exist" });
+      return res.status(400).json({ error: "user already exists" });
     }
+
     const user = await createUser({ name, email, password });
     if (!user) {
       res.status(400);
       throw new Error("there was a problem creating user");
     }
+
     const { password: userPassword, ...rest } = user._doc;
     return res.status(201).json(rest);
   } catch (error) {
@@ -37,16 +39,15 @@ const loginUser = async (req, res, next) => {
     }
 
     const foundUser = await User.findOne({ email });
-
     if (!foundUser) {
       return res.status(404).json({ error: "user not found" });
     }
 
     const isAuth = await bcrypt.compare(password, foundUser.password);
-
     if (!isAuth) {
       return res.status(400).json({ error: "check credentials and try again" });
     }
+
     const token = jwt.sign({ id: foundUser._id }, process.env.JWT_SECRET, {
       expiresIn: "30d",
     });
@@ -64,4 +65,7 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-export { registerUser, loginUser };
+module.exports = {
+  registerUser,
+  loginUser,
+};

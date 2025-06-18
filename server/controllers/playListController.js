@@ -1,4 +1,4 @@
-import PlayList from "../models/playListModel.js";
+const PlayList = require("../models/playListModel");
 
 const createPlayList = async (req, res, next) => {
   try {
@@ -14,21 +14,16 @@ const createPlayList = async (req, res, next) => {
       ...rest
     } = req.body;
 
-    // console.log({ imdb_id });
-    // return res.json({ message: "create playlist" });
-
     const checkUser = req.user._id.toString() === userId;
-
     if (!checkUser) {
       res.status(400);
       throw new Error("you are not allowed to add to playlist");
     }
 
     const exist = await PlayList.findOne({ userId, movieId });
-
     if (exist) {
       res.status(400);
-      throw new Error("item already exist in playlist");
+      throw new Error("item already exists in playlist");
     }
 
     const newPlayList = await PlayList.create({
@@ -63,18 +58,15 @@ const getPlayList = async (req, res, next) => {
 };
 
 const deletePlayList = async (req, res, next) => {
-  // check if item exist
   const { movieId, userId } = req.body;
   try {
     const exist = await PlayList.findOne({ userId, movieId });
     if (!exist) {
       res.status(404);
-      throw new Error("play list item not found");
+      throw new Error("playlist item not found");
     }
 
-    // delete item
     const deletedItem = await PlayList.findOneAndDelete({ userId, movieId });
-
     if (!deletedItem) {
       res.status(400);
       throw new Error("there was a problem deleting item from playlist");
@@ -86,4 +78,8 @@ const deletePlayList = async (req, res, next) => {
   }
 };
 
-export { createPlayList, getPlayList, deletePlayList };
+module.exports = {
+  createPlayList,
+  getPlayList,
+  deletePlayList,
+};

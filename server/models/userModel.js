@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+// server/models/userModel.js
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
@@ -21,4 +22,5 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("User", userSchema);
+// 👇 Prevent model overwrite on hot reloads or watch mode
+module.exports = mongoose.models.User || mongoose.model("User", userSchema);

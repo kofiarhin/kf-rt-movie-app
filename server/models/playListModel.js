@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const playListSchema = new mongoose.Schema(
   {
@@ -32,4 +32,4 @@ const playListSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("PlayList", playListSchema);
+module.exports = mongoose.model("PlayList", playListSchema);

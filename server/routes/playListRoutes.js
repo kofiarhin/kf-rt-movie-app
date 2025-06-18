@@ -1,15 +1,15 @@
-import { Router } from "express";
-import auth from "../middleware/auth.js";
-import {
+const express = require("express");
+const auth = require("../middleware/auth");
+const {
   createPlayList,
   getPlayList,
   deletePlayList,
-} from "../controllers/playListController.js";
+} = require("../controllers/playListController");
 
-const router = Router();
+const router = express.Router();
 
 router.post("/", auth, createPlayList);
-
 router.get("/", auth, getPlayList);
 router.delete("/", auth, deletePlayList);
-export default router;
+
+module.exports = router;

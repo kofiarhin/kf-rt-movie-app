@@ -1,9 +1,8 @@
-import dotenv from "dotenv";
-import mongoose from "mongoose";
-import { beforeAll, afterAll, beforeEach, afterEach } from "vitest";
-import User from "../models/userModel.js";
-import { createUser } from "../utils/helper.js";
-import users from "./data/users.js";
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const User = require("../models/userModel");
+const { createUser } = require("../utils/helper");
+const users = require("./data/users");
 
 // setup environment variables
 dotenv.config();
@@ -20,16 +19,12 @@ beforeAll(async () => {
     await clearDB();
 
     // populate database
-    await Promise.all(
-      users.map(async (user) => {
-        await createUser(user);
-      })
-    );
+    await Promise.all(users.map(async (user) => await createUser(user)));
   } catch (error) {
     console.log(error.message);
     process.exit(1);
   }
-});
+}, 15000); // Increase timeout for slow startup
 
 // after all
 afterAll(async () => {

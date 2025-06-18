@@ -1,11 +1,17 @@
-import User from "../models/userModel.js";
-import bcrypt from "bcryptjs";
+// utils/helper.js
+
+const User = require("../models/userModel");
+const bcrypt = require("bcryptjs");
 
 const createUser = async (userData) => {
   try {
     const { password, ...rest } = userData;
+
+    // Hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Create the user
     const user = await User.create({
       ...rest,
       password: hashedPassword,
@@ -13,8 +19,11 @@ const createUser = async (userData) => {
 
     return user;
   } catch (error) {
-    return { error: error.message };
+    // Let the caller handle the error (controller should catch this)
+    throw new Error(error.message);
   }
 };
 
-export { createUser };
+module.exports = {
+  createUser,
+};
