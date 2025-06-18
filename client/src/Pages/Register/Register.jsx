@@ -1,13 +1,17 @@
 import { useState } from "react";
 import useRegisterMutation from "../../hooks/useRegisterMutation";
+import Spinner from "../../components/Spinner/Spinner";
 
 // register page
 const Register = () => {
-  const [name, setName] = useState("test");
-  const [email, setEmail] = useState("test6@gmail.com");
-  const [password, setPassword] = useState("password");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { mutate, isLoading, error } = useRegisterMutation();
-  console.log(error);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   const handleRegister = (e) => {
     e.preventDefault();

@@ -3,8 +3,8 @@ import useLoginmutation from "../../hooks/useLoginMutation";
 import Spinner from "../../components/Spinner/Spinner";
 
 const Login = () => {
-  const [email, setEmail] = useState("test5@gmail.com");
-  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { mutate, isLoading, isSuccess, error } = useLoginmutation();
 
   if (isLoading) {
@@ -34,7 +34,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <p className="error"> {error ? "Invalid Credentials" : ""} </p>
+        <p className="error"> {error ? error.message : ""} </p>
         <button type="submit">Login</button>
         <p>
           Don't have an account? <a href="/register">Register</a>

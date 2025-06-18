@@ -10,8 +10,6 @@ const loginUser = async (userData) => {
       ? `${baseurl}/api/auth/login`
       : "http://localhost:5000/api/auth/login";
 
-  console.log("xxxx", url);
-
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -23,7 +21,7 @@ const loginUser = async (userData) => {
   const data = await res.json();
 
   if (!res.ok) {
-    throw new Error(data);
+    throw new Error(data.error);
   }
 
   return data;
@@ -43,7 +41,7 @@ const useLoginMutation = () => {
       navigate("/for_you");
     },
     onError: (error) => {
-      console.error("Login failed:", error.message);
+      console.log("error", error.message);
     },
   });
 };
