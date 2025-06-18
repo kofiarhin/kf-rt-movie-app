@@ -1,43 +1,47 @@
-import { Mutation, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { baseurl, env } from "../config/lib";
 
+// Async function to register a user
 const registerUser = async (userData) => {
-  try {
-    const url =
-      env === "production"
-        ? `${baseurl}/api/auth/register`
-        : "http://localhost:5000/api/auth/register";
+  const url =
+    env === "production"
+      ? `${baseurl}/api/auth/register`
+      : "http://localhost:5000/api/auth/register";
 
-    const res = await fetch(url, {
-      headers: {
-        "content-type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify(userData),
-    });
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  });
 
-    if (!res.ok) {
-      const error = await res.json();
-      throw new Error(error);
-    }
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    return { error: error.message };
+  const data = await res.json();
+  if (!res.ok) {
+    // Throw a meaningful error message
+    throw new Error(data.error || "Registration failed");
   }
+
+  return data;
 };
 
+// Custom hook using useMutation
 const useRegisterMutation = () => {
   const navigate = useNavigate();
+
   return useMutation({
-    mutationKey: "register",
-    mutationFn: (userData) => registerUser(userData),
+    mutationKey: ["register"], // use array for consistency
+    mutationFn: registerUser,
     onSuccess: (data) => {
-      navigate("/login?q=success");
+      console.log("✅ Registration successful:", data);
+      navigate("/login");
+      // Example: redirect to login page with success query param
+      // navigate("/login?q=success");
     },
-    onError: (data) => {
-      console.log("yyy", data);
+    onError: (error) => {
+      console.log("xxxx", error);
+      // error.message will contain the server error
     },
   });
 };

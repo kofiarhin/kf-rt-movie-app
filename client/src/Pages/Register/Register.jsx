@@ -3,10 +3,11 @@ import useRegisterMutation from "../../hooks/useRegisterMutation";
 
 // register page
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState("test");
+  const [email, setEmail] = useState("test6@gmail.com");
+  const [password, setPassword] = useState("password");
   const { mutate, isLoading, error } = useRegisterMutation();
+  console.log(error);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -38,6 +39,7 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <p className="error"> {error ? error.message : ""} </p>
         <button type="submit">Register</button>
         <p>
           Already have an account? <a href="/login">Login</a>
