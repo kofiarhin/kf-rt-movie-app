@@ -10,6 +10,8 @@ const loginUser = async (userData) => {
       ? `${baseurl}/api/auth/login`
       : "http://localhost:5000/api/auth/login";
 
+  console.log("xxxx", url);
+
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -21,8 +23,7 @@ const loginUser = async (userData) => {
   const data = await res.json();
 
   if (!res.ok) {
-    const errorMessage = data?.message || "Login failed";
-    throw new Error(errorMessage);
+    throw new Error(data);
   }
 
   return data;
@@ -39,7 +40,7 @@ const useLoginMutation = () => {
       localStorage.setItem("user", JSON.stringify(data));
       localStorage.setItem("token", data.token);
       dispatch(setUser(data));
-      navigate("/play_list");
+      navigate("/for_you");
     },
     onError: (error) => {
       console.error("Login failed:", error.message);

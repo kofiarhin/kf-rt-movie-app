@@ -26,6 +26,8 @@ import Quiz from "./Pages/Quiz/Quiz";
 
 // app
 const App = () => {
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   return (
     <Router>
       <Header />
