@@ -13,6 +13,11 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 
+// test server
+app.get("/", (req, res) => {
+  return res.json({ message: "hello world" });
+});
+
 app.get("/api/users", async (req, res) => {
   const users = await User.find({});
   return res.json(users);
