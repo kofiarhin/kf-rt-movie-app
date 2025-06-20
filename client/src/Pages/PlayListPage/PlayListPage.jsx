@@ -13,9 +13,14 @@ const PlayListPage = () => {
   }
   return (
     <div id="playlist">
-      <h2 className="heading"> Your play list</h2>
-
-      <PlayList data={data} />
+      {data?.length > 0 ? (
+        <>
+          <h2 className="heading"> Your play list</h2>
+          <PlayList data={data} />
+        </>
+      ) : (
+        <h2>No playlist</h2>
+      )}
     </div>
   );
 };

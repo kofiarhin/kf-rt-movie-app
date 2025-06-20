@@ -1,18 +1,21 @@
 import "./App.styles.scss";
+
+// External libraries
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home/Home";
+
+// Components
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+
+// Pages
+import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Movie from "./Pages/Movie/Movie";
 import SearchPage from "./Pages/Search/SearchPage";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import { useEffect } from "react";
-import Footer from "./components/Footer/Footer";
 import Playground from "./Pages/Playground/Playground";
 import CharacterMovies from "./Pages/CharacterMovies/CharacterMovies";
-import { useSelector } from "react-redux";
-import usePlayListQuery from "./hooks/usePlayListQuery";
 import PlayListPage from "./Pages/PlayListPage/PlayListPage";
 import Profile from "./Pages/Profile/Profile";
 import ForYou from "./Pages/ForYou/ForYou";
@@ -24,10 +27,8 @@ import Movies from "./Pages/Movies/Movies";
 import QuizPage from "./Pages/QuizPage/QuizPage";
 import Quiz from "./Pages/Quiz/Quiz";
 
-// app
+// App component
 const App = () => {
-  const { user } = useSelector((state) => state.auth);
-  console.log(user);
   return (
     <Router>
       <Header />
@@ -47,11 +48,12 @@ const App = () => {
           <Route path="/movies" element={<Movies />} />
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/quiz/:movie" element={<Quiz />} />
-          {/* private routes */}
+
+          {/* Private routes */}
           <Route element={<PrivateRoute />}>
             <Route path="/play_list" element={<PlayListPage />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="for_you" element={<ForYou />} />
+            <Route path="/for_you" element={<ForYou />} />
           </Route>
         </Routes>
       </div>

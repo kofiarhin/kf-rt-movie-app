@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const QuizPage = () => {
   const navigate = useNavigate();
+  const [errorMessage, setErrormessage] = useState("");
   const [movieTitle, setMovieTitle] = useState(null);
   const { data, isLoading } = useMovies();
 
@@ -18,6 +19,10 @@ const QuizPage = () => {
   };
 
   const handleStart = () => {
+    if (!movieTitle) {
+      setErrormessage("please seltect movie");
+      return;
+    }
     navigate(`/quiz/${movieTitle}`);
   };
   return (
@@ -35,6 +40,7 @@ const QuizPage = () => {
             );
           })}
         </select>
+        {errorMessage ? <p className="text error"> {errorMessage} </p> : ""}
         <button onClick={handleStart}> Start Quiz </button>
       </div>
     </div>

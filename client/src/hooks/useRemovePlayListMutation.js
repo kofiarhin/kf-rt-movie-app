@@ -14,7 +14,6 @@ const removeItem = async (data) => {
     method: "DELETE",
     body: JSON.stringify({ movieId, token, userId }),
   });
-  console.log(res.ok);
   return { data: "remove item" };
 };
 
