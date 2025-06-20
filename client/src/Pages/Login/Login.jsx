@@ -5,9 +5,9 @@ import Spinner from "../../components/Spinner/Spinner";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { mutate, isLoading, isSuccess, error } = useLoginmutation();
+  const { mutate, isLoading, isSuccess, isPending, error } = useLoginmutation();
 
-  if (isLoading) {
+  if (isPending) {
     return <Spinner />;
   }
 

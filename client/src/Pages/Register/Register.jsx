@@ -7,9 +7,9 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { mutate, isLoading, error } = useRegisterMutation();
+  const { mutate, isLoading, isPending, error } = useRegisterMutation();
 
-  if (isLoading) {
+  if (isPending) {
     return <Spinner />;
   }
 
