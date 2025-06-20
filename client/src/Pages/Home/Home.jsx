@@ -7,6 +7,7 @@ import Landing from "../../components/Landing/Landing";
 import { getRandomInt } from "../../config/lib";
 import useNowPlaying from "../../hooks/useNowPlaying";
 import useDiscovered from "../../hooks/useDiscovered";
+import JoinSection from "../../components/JoinSection/JoinSection";
 
 // home
 const Home = () => {
@@ -32,6 +33,9 @@ const Home = () => {
 
       {/* up coming movies */}
       <LinearMovieList title="Up Coming Movies" movies={discoveredData} />
+
+      {/* join section */}
+      <JoinSection />
     </div>
   );
 };
