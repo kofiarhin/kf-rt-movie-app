@@ -2,6 +2,7 @@ const { createUser } = require("../utils/helper");
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const sendEmail = require("../utils/emailService");
 
 // register user
 const registerUser = async (req, res, next) => {
@@ -23,8 +24,18 @@ const registerUser = async (req, res, next) => {
       throw new Error("there was a problem creating user");
     }
 
+    // generate token and and send email
+    const token = jwt.sign({ email }, process.env.JWT_SECRET);
+
+    // send email
+    const info = await sendEmail({
+      to: email,
+      subject: "email verification",
+      text: `verification link http://localhost:5000/api/verify-token/${token}`,
+    });
+
     const { password: userPassword, ...rest } = user._doc;
-    return res.status(201).json(rest);
+    return res.status(201).json({ ...rest, token });
   } catch (error) {
     return res.json({ error: error.message });
   }

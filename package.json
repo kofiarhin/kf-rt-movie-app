@@ -26,6 +26,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1",
+    "nodemailer": "^7.0.3",
     "react-redux": "^9.2.0"
   },
   "devDependencies": {

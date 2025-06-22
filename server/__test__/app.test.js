@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 const app = require("../app");
 const request = require("supertest");
 
-describe("auth", () => {
+describe("app", () => {
   it("should get list of users", async () => {
     const result = await User.find();
     expect(result.length).toBeGreaterThan(0);
@@ -67,5 +67,27 @@ describe("auth", () => {
       .post("/api/auth/register")
       .send(user);
     expect(body).toHaveProperty("error");
+  });
+
+  it("should test for token endpoint", async () => {
+    const { body, statusCode } = await request(app).get("/api/verify-token");
+  });
+
+  it("should get token from routes", async () => {
+    const { body, statusCode } = await request(app).get(
+      "/api/verify-token/abcd"
+    );
+  });
+
+  it("should test for token to be gen after registration", async () => {
+    const user = {
+      name: "testing mic",
+      email: "testingmic@gmail.com",
+      password: "password",
+    };
+
+    const { body, statusCode } = await request(app)
+      .post("/api/auth/register")
+      .send(user);
   });
 });

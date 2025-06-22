@@ -5,6 +5,8 @@ const authRoutes = require("./routes/authRoute");
 const auth = require("./middleware/auth");
 const User = require("./models/userModel");
 const playListRoutes = require("./routes/playListRoutes");
+const tokenRoutes = require("./routes/tokenRoutes");
+const path = require("path");
 
 const app = express();
 
@@ -12,6 +14,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, "public")));
 
 // test server
 app.get("/", (req, res) => {
@@ -26,5 +29,6 @@ app.get("/api/users", async (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/check", auth);
 app.use("/api/play_list", playListRoutes);
+app.use("/api/verify-token", tokenRoutes);
 
 module.exports = app;
