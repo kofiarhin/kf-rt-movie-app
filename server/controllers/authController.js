@@ -30,7 +30,7 @@ const registerUser = async (req, res, next) => {
     //  check if wer are in production or development
     const url =
       process.env.NODE_ENV === "production"
-        ? `${process.env.PROD_BASE_URL}/api/verify-token/${token}`
+        ? `${process.env.PROD_BASE_URL}/api/verify-token/${token}?email=${email}`
         : `http://localhost:5000/api/verify-token/${token}`;
 
     // send email
