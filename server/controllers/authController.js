@@ -37,7 +37,7 @@ const registerUser = async (req, res, next) => {
     const info = await sendEmail({
       to: email,
       subject: "email verification",
-      text: `verification link  ${url}`,
+      text: `verification link   ${process.env.PROD_BASE_URL}/api/verify-token/${token}`,
     });
 
     const { password: userPassword, ...rest } = user._doc;
