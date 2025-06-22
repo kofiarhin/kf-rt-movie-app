@@ -81,13 +81,14 @@ describe("app", () => {
 
   it("should test for token to be gen after registration", async () => {
     const user = {
-      name: "testing mic",
-      email: "testingmic@gmail.com",
+      name: "david",
+      email: "davidkraku69@gmail.com",
       password: "password",
     };
 
     const { body, statusCode } = await request(app)
       .post("/api/auth/register")
       .send(user);
+    console.log("xxxxxx", body);
   });
 });
