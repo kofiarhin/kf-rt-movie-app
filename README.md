@@ -8,8 +8,11 @@ A real-time movie browsing and discovery web app built with React. Users can exp
 Vercel
 <a href="https://kf-rt-movie-app.vercel.app/" target="_blank">Check it out here</a>
 
-Render
+Render Frontend:
 <a href="https://kf-rt-movie-app.vercel.app/" target="_blank">Check it out here</a>
+
+Render Backend:
+<a href="https://kf-rt-movie-app.onrender.com" target="_blank">Check it out here</a>
 
 ---
 
