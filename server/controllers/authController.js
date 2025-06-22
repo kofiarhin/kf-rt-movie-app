@@ -27,11 +27,17 @@ const registerUser = async (req, res, next) => {
     // generate token and and send email
     const token = jwt.sign({ email }, process.env.JWT_SECRET);
 
+    //  check if wer are in production or development
+    const url =
+      process.env.NODE_ENV === "production"
+        ? `${process.env.PROD_BASE_URL}/api/verify-token/${token}`
+        : `http://localhost:5000/api/verify-token/${token}`;
+
     // send email
     const info = await sendEmail({
       to: email,
       subject: "email verification",
-      text: `verification link http://localhost:5000/api/verify-token/${token}`,
+      text: `verification link  ${url}`,
     });
 
     const { password: userPassword, ...rest } = user._doc;
