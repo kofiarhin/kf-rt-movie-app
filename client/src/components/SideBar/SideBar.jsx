@@ -30,6 +30,9 @@ const SideBar = () => {
         <div className="menu-unit">
           {user ? (
             <>
+              <Link to="/profile" className="nav-link" onClick={handleToggle}>
+                Profile
+              </Link>
               <Link to="/for_you" className="nav-link" onClick={handleToggle}>
                 For You
               </Link>
