@@ -14,20 +14,11 @@ const JoinSection = () => {
           available on popular streaming services like Netflix, Disney Plus,
           Amazon Prime Video, Apple TV+, and Rakuten TV.
         </p>
-        <button className="signupButton" onClick={() => navigate("/login")}>
-          Sign Up
-        </button>
-        <ul className="features">
-          <li>Enjoy TMDB ad free</li>
-          <li>Maintain a personal watchlist</li>
-          <li>
-            Filter by your subscribed streaming services and find something to
-            watch
-          </li>
-          <li>Log the movies and TV shows you’ve seen</li>
-          <li>Build custom lists</li>
-          <li>Contribute to and improve our database</li>
-        </ul>
+        <div className="button-wrapper">
+          <button className="signupButton" onClick={() => navigate("/login")}>
+            Sign Up
+          </button>
+        </div>
       </div>
     </section>
   );
